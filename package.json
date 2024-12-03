@@ -2,6 +2,9 @@
   "name": "@nativeframe/react-native-native-frame",
   "version": "0.9.0",
   "description": "React native package for streaming",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -52,7 +55,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://www.nativeframe.com/.git"
+    "url": "git+https://github.com/nativeframe/react-native-native-frame.git"
   },
   "author": "Native Frame <support@nativeframe.com> (https://www.nativeframe.com/)",
   "license": "MIT",
@@ -60,9 +63,6 @@
     "url": "https://www.nativeframe.com//issues"
   },
   "homepage": "https://www.nativeframe.com/#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",

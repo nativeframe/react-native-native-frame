@@ -5,6 +5,10 @@ build
 node_modules
 lib
 
+.yarn
+.yarnrc.yml
+yarn-error.log
+
 *.iml
 .gradle
 android/local.properties
