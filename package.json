@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "React native package for streaming",
   "private": "false",
   "publishConfig": {
