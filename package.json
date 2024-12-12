@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "React native package for streaming",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
