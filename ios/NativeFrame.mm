@@ -3,8 +3,6 @@
 @implementation NativeFrame
 RCT_EXPORT_MODULE()
 
-// Don't compile this code when we build for the old architecture.
-#ifdef RCT_NEW_ARCH_ENABLED
 - (NSNumber *)multiply:(double)a b:(double)b {
     NSNumber *result = @(a * b);
 
@@ -16,6 +14,5 @@ RCT_EXPORT_MODULE()
 {
     return std::make_shared<facebook::react::NativeNativeFrameSpecJSI>(params);
 }
-#endif
 
 @end

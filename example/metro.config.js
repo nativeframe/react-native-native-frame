@@ -15,4 +15,11 @@ module.exports = getConfig(getDefaultConfig(__dirname), {
   root,
   pkg,
   project: __dirname,
+  // Make Metro able to resolve required external dependencies
+  watchFolders: [path.resolve(__dirname, '../Library')],
+  resolver: {
+    extraNodeModules: {
+      'react-native': path.resolve(__dirname, 'node_modules/react-native'),
+    },
+  },
 });

@@ -4,6 +4,7 @@ generated
 build
 node_modules
 lib
+caches
 
 .yarn
 .yarnrc.yml
