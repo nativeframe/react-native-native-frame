@@ -1,0 +1,3 @@
+best way to start react native apps:
+    npx @react-native-community/cli  init X
+    npx react-native run-android

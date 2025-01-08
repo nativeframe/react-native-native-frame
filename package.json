@@ -1,26 +1,22 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.2",
+  "version": "0.9.19",
   "description": "React native package for streaming",
-  "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/module/index.js",
-  "private": true,
+  "source": "./src/app.tsx",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/typescript/module/src/index.d.ts",
-        "default": "./lib/module/index.js"
-      },
-      "require": {
-        "types": "./lib/typescript/commonjs/src/index.d.ts",
-        "default": "./lib/commonjs/index.js"
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
       }
     }
   },
   "files": [
     "src",
     "lib",
+    "typings",
     "android",
     "ios",
     "cpp",
@@ -40,12 +36,15 @@
   "scripts": {
     "example": "yarn workspace react-native-native-frame-example",
     "test": "jest",
+    "reset": "npx react-native start --reset-cache",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "clean-full": "rm -rf node_modules && rm -rf example/node_modules/ && rm -rf android/build && rm -rf example/android/build && rm -rf example/android/app/build && rm -rf android/build",
     "prepare": "bob build",
     "release": "release-it",
-    "publish": "yarn npm publish --access=public"
+    "publish": "rm -rf lib && tsc && yarn && yarn npm publish --access=public",
+    "javascript-spec": "npx @react-native-community/cli codegen"
   },
   "keywords": [
     "react-native",
@@ -66,9 +65,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@video/video-client-core": "13.2.0-aj-3",
-    "@video/video-client-reactnative": "9.0.0-aj-4",
-    "react-native-gradle-plugin": "^0.71.19"
+    "@react-native-async-storage/async-storage": "2.0.0",
+    "@react-native-community/netinfo": "11.4.1",
+    "@video/video-client-core": "13.2.0",
+    "@videomobile/react-native-webrtc": "124.0.4",
+    "@videorn/video-client-reactnative": "9.0.0",
+    "react-native-gradle-plugin": "^0.71.19",
+    "react-native-video": "^6.8.2"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
@@ -190,9 +193,9 @@
     ]
   },
   "codegenConfig": {
-    "name": "RNNativeFrameSpec",
+    "name": "NativeFrameSpec",
     "type": "modules",
-    "jsSrcsDir": "src",
+    "jsSrcsDir": "specs",
     "outputDir": {
       "ios": "ios/generated",
       "android": "android/generated"

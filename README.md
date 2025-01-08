@@ -8,18 +8,6 @@ React native package for streaming
 npm install react-native-native-frame
 ```
 
-## Usage
-
-
-```js
-import { multiply } from 'react-native-native-frame';
-
-// ...
-
-const result = multiply(3, 7);
-```
-
-
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.

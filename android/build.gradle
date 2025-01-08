@@ -8,9 +8,10 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:7.2.1"
+    classpath "com.android.tools.build:gradle:$android_gradle_plugin_version"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath("com.facebook.react:react-native-gradle-plugin")
   }
 }
 
@@ -82,8 +83,12 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_21
+    targetCompatibility JavaVersion.VERSION_21
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_21.majorVersion
   }
 
   sourceSets {
@@ -98,25 +103,27 @@ android {
   }
 }
 
-repositories {
-  mavenCentral()
-  google()
+allprojects{
+  repositories {
+    mavenCentral()
+    google()
+  }
 }
 
 def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
-  // For < 0.71, this will be from the local maven repo
-  // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
-  //noinspection GradleDynamicVersion
-  implementation "com.facebook.react:react-native:+"
+  implementation "com.facebook.react:react-android:$react_native_version"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 if (isNewArchitectureEnabled()) {
   react {
-    jsRootDir = file("../src/")
+    jsRootDir = file("../specs/")
     libraryName = "NativeFrame"
     codegenJavaPackageName = "com.nativeframe"
+
+    // Needed to enable Autolinking - https://github.com/react-native-community/cli/blob/master/docs/autolinking.md
+    //autolinkLibrariesWithApp()
   }
 }

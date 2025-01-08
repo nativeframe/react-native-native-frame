@@ -1,11 +1,12 @@
 package com.nativeframe
 
+import com.facebook.fbreact.specs.NativeMultiplySpec
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 
 @ReactModule(name = NativeFrameModule.NAME)
 class NativeFrameModule(reactContext: ReactApplicationContext) :
-  NativeNativeFrameSpec(reactContext) {
+  NativeMultiplySpec(reactContext) {
 
   override fun getName(): String {
     return NAME
