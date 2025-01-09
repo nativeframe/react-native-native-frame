@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.19",
+  "version": "0.9.23",
   "description": "React native package for streaming",
   "source": "./src/app.tsx",
   "main": "./lib/index.js",
@@ -194,8 +194,8 @@
   },
   "codegenConfig": {
     "name": "NativeFrameSpec",
-    "type": "modules",
-    "jsSrcsDir": "specs",
+    "type": "all",
+    "jsSrcsDir": "./src/specs",
     "outputDir": {
       "ios": "ios/generated",
       "android": "android/generated"

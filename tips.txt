@@ -1,3 +1,10 @@
 best way to start react native apps:
     npx @react-native-community/cli  init X
     npx react-native run-android
+
+    setup
+    npm install
+    npx react-native run-android
+
+
+expo is for fast mvp projects, using expo api

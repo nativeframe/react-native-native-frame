@@ -1,6 +1,5 @@
 package com.nativeframe
 
-import com.facebook.fbreact.specs.NativeMultiplySpec
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 
