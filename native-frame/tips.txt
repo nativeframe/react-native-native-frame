@@ -1,0 +1,27 @@
+best way to start react native apps:
+    npx @react-native-community/cli init X
+         npx @react-native-community/cli@latest init WebViewDemo --install-pods false
+    npx react-native run-android
+
+    setup
+    npm install
+    npx react-native run-android
+
+
+expo is for fast mvp projects, using expo api
+
+
+dev
+bug - we have to copy cpp files 
+ComponentDescriptors.cpp 
+ComponentDescriptors.h 
+EventEmitters.cpp 
+EventEmitters.h 
+Props.cpp 
+Props.h 
+ShadowNodes.cpp 
+ShadowNodes.h 
+States.cpp 
+States.h
+
+

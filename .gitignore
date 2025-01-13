@@ -1,10 +1,11 @@
 .DS_Store
 
-generated
 build
 node_modules
 lib
 caches
+cache
+ruby
 
 .yarn
 .yarnrc.yml
