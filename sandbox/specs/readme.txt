@@ -1,0 +1,2 @@
+- views must have suffix 'NativeComponent'
+- modules must have prefix 'Native'
