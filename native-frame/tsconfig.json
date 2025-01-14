@@ -34,9 +34,11 @@
     "removeComments": true,
     "noEmit": false
   },
+  "include": [
+    "./src"
+  ],
   "exclude": [
     "node_modules",
-    "lib",
-    "typings"
+    "lib"
   ]
 }
