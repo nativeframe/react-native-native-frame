@@ -24,4 +24,14 @@ class NFButtonProps final : public ViewProps {
   std::string text{};
 };
 
+class NFVideoPlayerProps final : public ViewProps {
+ public:
+  NFVideoPlayerProps() = default;
+  NFVideoPlayerProps(const PropsParserContext& context, const NFVideoPlayerProps &sourceProps, const RawProps &rawProps);
+
+#pragma mark - Props
+
+  std::string hls{};
+};
+
 } // namespace facebook::react

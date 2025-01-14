@@ -21,5 +21,12 @@ NFButtonProps::NFButtonProps(
 
     text(convertRawProp(context, rawProps, "text", sourceProps.text, {}))
       {}
+NFVideoPlayerProps::NFVideoPlayerProps(
+    const PropsParserContext &context,
+    const NFVideoPlayerProps &sourceProps,
+    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
+
+    hls(convertRawProp(context, rawProps, "hls", sourceProps.hls, {}))
+      {}
 
 } // namespace facebook::react

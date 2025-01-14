@@ -17,6 +17,7 @@
 namespace facebook::react {
 
 using NFButtonComponentDescriptor = ConcreteComponentDescriptor<NFButtonShadowNode>;
+using NFVideoPlayerComponentDescriptor = ConcreteComponentDescriptor<NFVideoPlayerShadowNode>;
 
 void NativeFrameSpec_registerComponentDescriptorsFromCodegen(
   std::shared_ptr<const ComponentDescriptorProviderRegistry> registry);

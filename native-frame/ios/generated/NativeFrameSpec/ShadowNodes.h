@@ -29,4 +29,15 @@ using NFButtonShadowNode = ConcreteViewShadowNode<
     NFButtonEventEmitter,
     NFButtonState>;
 
+JSI_EXPORT extern const char NFVideoPlayerComponentName[];
+
+/*
+ * `ShadowNode` for <NFVideoPlayer> component.
+ */
+using NFVideoPlayerShadowNode = ConcreteViewShadowNode<
+    NFVideoPlayerComponentName,
+    NFVideoPlayerProps,
+    NFVideoPlayerEventEmitter,
+    NFVideoPlayerState>;
+
 } // namespace facebook::react

@@ -64,6 +64,7 @@ android {
 
   buildFeatures {
     buildConfig true
+    viewBinding true
   }
 
   buildTypes {
@@ -107,6 +108,12 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 dependencies {
   implementation "com.facebook.react:react-android:$react_native_version"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  def vMedia3 = '1.5.1'
+  implementation "androidx.media3:media3-exoplayer:$vMedia3"
+  implementation "androidx.media3:media3-exoplayer-dash:$vMedia3"
+  implementation "androidx.media3:media3-ui:$vMedia3"
+  implementation "androidx.media3:media3-exoplayer-hls:$vMedia3"
 }
 
 react {

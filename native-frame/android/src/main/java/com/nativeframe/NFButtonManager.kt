@@ -1,6 +1,5 @@
 package com.nativeframe
 
-import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -10,7 +9,7 @@ import com.facebook.react.viewmanagers.NFButtonManagerDelegate
 import com.facebook.react.viewmanagers.NFButtonManagerInterface
 
 @ReactModule(name = NFButtonManager.REACT_CLASS)
-class NFButtonManager(context: ReactApplicationContext) : SimpleViewManager<NFButton>(),
+class NFButtonManager : SimpleViewManager<NFButton>(),
   NFButtonManagerInterface<NFButton> {
   private val delegate: NFButtonManagerDelegate<NFButton, NFButtonManager> =
     NFButtonManagerDelegate(this)

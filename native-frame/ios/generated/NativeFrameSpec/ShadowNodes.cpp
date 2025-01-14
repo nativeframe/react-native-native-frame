@@ -13,5 +13,6 @@
 namespace facebook::react {
 
 extern const char NFButtonComponentName[] = "NFButton";
+extern const char NFVideoPlayerComponentName[] = "NFVideoPlayer";
 
 } // namespace facebook::react

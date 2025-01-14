@@ -8,6 +8,7 @@ object NativeFramePackages {
     NativeLocalStoragePackage(),
 
     //components
-    NFButtonPackage()
+    NFButtonPackage(),
+    NFVideoPlayerPackage()
   )
 }

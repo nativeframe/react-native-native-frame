@@ -26,4 +26,16 @@ public:
 #endif
 };
 
+class NFVideoPlayerState {
+public:
+  NFVideoPlayerState() = default;
+
+#ifdef ANDROID
+  NFVideoPlayerState(NFVideoPlayerState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
 } // namespace facebook::react

@@ -20,4 +20,11 @@ class NFButtonEventEmitter : public ViewEventEmitter {
   
   
 };
+class NFVideoPlayerEventEmitter : public ViewEventEmitter {
+ public:
+  using ViewEventEmitter::ViewEventEmitter;
+
+  
+  
+};
 } // namespace facebook::react

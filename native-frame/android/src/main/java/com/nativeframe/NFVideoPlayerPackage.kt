@@ -7,9 +7,9 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 
-class NFButtonPackage : TurboReactPackage() {
+class NFVideoPlayerPackage : TurboReactPackage() {
   override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-    return listOf(NFButtonManager())
+    return listOf(NFVideoPlayerManager())
   }
 
   override fun getModule(
@@ -17,16 +17,16 @@ class NFButtonPackage : TurboReactPackage() {
     reactApplicationContext: ReactApplicationContext
   ): NativeModule? {
     when (s) {
-      NFButtonManager.REACT_CLASS -> NFButtonManager()
+      NFVideoPlayerManager.REACT_CLASS -> NFVideoPlayerManager()
     }
     return null
   }
 
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider = ReactModuleInfoProvider {
     mapOf(
-      NFButtonManager.REACT_CLASS to ReactModuleInfo(
-        _name = NFButtonManager.REACT_CLASS,
-        _className = NFButtonManager.REACT_CLASS,
+      NFVideoPlayerManager.REACT_CLASS to ReactModuleInfo(
+        _name = NFVideoPlayerManager.REACT_CLASS,
+        _className = NFVideoPlayerManager.REACT_CLASS,
         _canOverrideExistingModule = false,
         _needsEagerInit = false,
         isCxxModule = false,
