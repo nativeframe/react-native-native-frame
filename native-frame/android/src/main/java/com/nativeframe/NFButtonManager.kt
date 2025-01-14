@@ -25,7 +25,7 @@ class NFButtonManager(context: ReactApplicationContext) : SimpleViewManager<NFBu
     const val REACT_CLASS = "NFButton"
   }
 
-  @ReactProp(name = "sourceUrl")
+  @ReactProp(name = "text")
   override fun setText(view: NFButton?, value: String?) {
     view?.text = value
   }

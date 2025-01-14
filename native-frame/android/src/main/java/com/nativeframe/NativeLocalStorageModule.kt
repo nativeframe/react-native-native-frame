@@ -17,14 +17,14 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  override fun setItem(value: String, key: String) {
+  override fun setItem(key: String, value: String) {
     val sharedPref = reactApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE)
     val editor = sharedPref.edit()
     editor.putString(key, value)
     editor.apply()
   }
 
-  override fun getItem(key: String): String? {
+  override fun getItem(key: String): String {
     val sharedPref = reactApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE)
     val username = sharedPref.getString(key, null)
     return username.toString()

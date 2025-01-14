@@ -3,7 +3,7 @@
     "rootDir": "src",
     "outDir": "lib",
     "paths": {
-      "react-native-native-frame": ["./src/app", "./typings"]
+      "react-native-native-frame": ["./src/app"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -36,6 +36,7 @@
   },
   "exclude": [
     "node_modules",
-    "lib"
+    "lib",
+    "typings"
   ]
 }

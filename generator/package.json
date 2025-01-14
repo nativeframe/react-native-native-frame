@@ -37,11 +37,11 @@
     "node": ">=18"
   },
   "codegenConfig": {
-     "name": "GeneratorSpec",
+     "name": "NativeFrameSpec",
      "type": "all",
      "jsSrcsDir": "specs",
      "android": {
-       "javaPackageName": "com.generator"
+       "javaPackageName": "com.nativeframe"
      }
    }
 }

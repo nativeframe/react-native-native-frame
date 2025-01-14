@@ -27,7 +27,7 @@
 namespace facebook::react {
   
     static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_setItem(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "setItem", @selector(setItem:key:), args, count);
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "setItem", @selector(setItem:value:), args, count);
     }
 
     static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_getItem(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {

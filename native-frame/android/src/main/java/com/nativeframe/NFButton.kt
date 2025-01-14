@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 
-
 class NFButton : AppCompatButton {
   constructor(context: Context) : super(context) {
     configureComponent()

@@ -20,7 +20,7 @@ protected:
   NativeLocalStorageCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
 
 public:
-  virtual void setItem(jsi::Runtime &rt, jsi::String value, jsi::String key) = 0;
+  virtual void setItem(jsi::Runtime &rt, jsi::String key, jsi::String value) = 0;
   virtual std::optional<jsi::String> getItem(jsi::Runtime &rt, jsi::String key) = 0;
   virtual void removeItem(jsi::Runtime &rt, jsi::String key) = 0;
   virtual void clear(jsi::Runtime &rt) = 0;
@@ -50,13 +50,13 @@ private:
 
     }
 
-    void setItem(jsi::Runtime &rt, jsi::String value, jsi::String key) override {
+    void setItem(jsi::Runtime &rt, jsi::String key, jsi::String value) override {
       static_assert(
           bridging::getParameterCount(&T::setItem) == 3,
           "Expected setItem(...) to have 3 parameters");
 
       return bridging::callFromJs<void>(
-          rt, &T::setItem, jsInvoker_, instance_, std::move(value), std::move(key));
+          rt, &T::setItem, jsInvoker_, instance_, std::move(key), std::move(value));
     }
     std::optional<jsi::String> getItem(jsi::Runtime &rt, jsi::String key) override {
       static_assert(

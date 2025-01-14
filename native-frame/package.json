@@ -1,22 +1,21 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.40",
+  "version": "0.9.66",
   "description": "React native package for streaming",
   "source": "./src/app.tsx",
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
+  "main": "./index.js",
+  "module": "./index.js",
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/index.d.ts",
-        "default": "./lib/index.js"
+        "types": "./index.d.ts",
+        "default": "./index.js"
       }
     }
   },
   "files": [
-    "src",
+    "specs",
     "lib",
-    "typings",
     "android",
     "ios",
     "cpp",
@@ -40,14 +39,16 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "clean-full": "rm -rf node_modules && rm -rf example/node_modules/ && rm -rf android/build && rm -rf example/android/build && rm -rf example/android/app/build && rm -rf android/build",
-    "prepare": "bob build && npx @react-native-community/cli codegen",
+    "prepare": "rm -rf lib && bob build && npx @react-native-community/cli codegen",
     "release": "release-it",
     "publish": "yarn prepare && yarn npm publish --access=public"
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "video",
+    "audio"
   ],
   "repository": {
     "type": "git",
@@ -101,13 +102,11 @@
     "react-native": "*"
   },
   "workspaces": [
-    "example"
   ],
   "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
     ]
   },

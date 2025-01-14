@@ -33,8 +33,8 @@
 
 @protocol NativeLocalStorageSpec <RCTBridgeModule, RCTTurboModule>
 
-- (void)setItem:(NSString *)value
-            key:(NSString *)key;
+- (void)setItem:(NSString *)key
+          value:(NSString *)value;
 - (NSString * _Nullable)getItem:(NSString *)key;
 - (void)removeItem:(NSString *)key;
 - (void)clear;

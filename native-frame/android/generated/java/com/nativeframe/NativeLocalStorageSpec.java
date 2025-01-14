@@ -34,7 +34,7 @@ public abstract class NativeLocalStorageSpec extends ReactContextBaseJavaModule 
 
   @ReactMethod
   @DoNotStrip
-  public abstract void setItem(String value, String key);
+  public abstract void setItem(String key, String value);
 
   @ReactMethod(isBlockingSynchronousMethod = true)
   @DoNotStrip
