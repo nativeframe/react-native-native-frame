@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.75",
+  "version": "0.9.76",
   "description": "React native package for streaming",
   "source": "./src/app.tsx",
   "main": "./index.js",
@@ -21,6 +21,7 @@
     "cpp",
     "*.podspec",
     "react-native.config.js",
+    "index.d.ts",
     "!ios/build",
     "!android/build",
     "!android/gradle",
