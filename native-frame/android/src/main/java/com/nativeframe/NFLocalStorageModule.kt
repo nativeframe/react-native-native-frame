@@ -5,8 +5,8 @@ import com.facebook.fbreact.specs.NativeLocalStorageSpec
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 
-@ReactModule(name = NativeFrameModule.NAME)
-class NativeLocalStorageModule(reactContext: ReactApplicationContext) :
+@ReactModule(name = NFUtilModule.NAME)
+class NFLocalStorageModule(reactContext: ReactApplicationContext) :
   NativeLocalStorageSpec(reactContext) {
 
   companion object {

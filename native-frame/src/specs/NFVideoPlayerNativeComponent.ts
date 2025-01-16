@@ -3,6 +3,7 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 export interface NativeProps extends ViewProps {
   hls?: string;
+  webm?: string;
 }
 
 export default codegenNativeComponent<NativeProps>(

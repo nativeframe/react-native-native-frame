@@ -47,17 +47,15 @@ NativeLocalStorageCxxSpecJSI::NativeLocalStorageCxxSpecJSI(std::shared_ptr<CallI
   methodMap_["removeItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageCxxSpecJSI_removeItem};
   methodMap_["clear"] = MethodMetadata {0, __hostFunction_NativeLocalStorageCxxSpecJSI_clear};
 }
-static jsi::Value __hostFunction_NativeMultiplyCxxSpecJSI_multiply(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  return static_cast<NativeMultiplyCxxSpecJSI *>(&turboModule)->multiply(
-    rt,
-    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asNumber(),
-    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asNumber()
+static jsi::Value __hostFunction_NativeUtilCxxSpecJSI_platformDetailsString(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
+  return static_cast<NativeUtilCxxSpecJSI *>(&turboModule)->platformDetailsString(
+    rt
   );
 }
 
-NativeMultiplyCxxSpecJSI::NativeMultiplyCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
-  : TurboModule("NativeMultiply", jsInvoker) {
-  methodMap_["multiply"] = MethodMetadata {2, __hostFunction_NativeMultiplyCxxSpecJSI_multiply};
+NativeUtilCxxSpecJSI::NativeUtilCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
+  : TurboModule("NativeUtil", jsInvoker) {
+  methodMap_["platformDetailsString"] = MethodMetadata {0, __hostFunction_NativeUtilCxxSpecJSI_platformDetailsString};
 }
 
 

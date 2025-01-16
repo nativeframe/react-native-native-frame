@@ -92,49 +92,49 @@ private:
 };
 
 
-  class JSI_EXPORT NativeMultiplyCxxSpecJSI : public TurboModule {
+  class JSI_EXPORT NativeUtilCxxSpecJSI : public TurboModule {
 protected:
-  NativeMultiplyCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
+  NativeUtilCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
 
 public:
-  virtual double multiply(jsi::Runtime &rt, double a, double b) = 0;
+  virtual jsi::String platformDetailsString(jsi::Runtime &rt) = 0;
 
 };
 
 template <typename T>
-class JSI_EXPORT NativeMultiplyCxxSpec : public TurboModule {
+class JSI_EXPORT NativeUtilCxxSpec : public TurboModule {
 public:
   jsi::Value get(jsi::Runtime &rt, const jsi::PropNameID &propName) override {
     return delegate_.get(rt, propName);
   }
 
-  static constexpr std::string_view kModuleName = "NativeMultiply";
+  static constexpr std::string_view kModuleName = "NativeUtil";
 
 protected:
-  NativeMultiplyCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
-    : TurboModule(std::string{NativeMultiplyCxxSpec::kModuleName}, jsInvoker),
+  NativeUtilCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
+    : TurboModule(std::string{NativeUtilCxxSpec::kModuleName}, jsInvoker),
       delegate_(reinterpret_cast<T*>(this), jsInvoker) {}
 
 
 private:
-  class Delegate : public NativeMultiplyCxxSpecJSI {
+  class Delegate : public NativeUtilCxxSpecJSI {
   public:
     Delegate(T *instance, std::shared_ptr<CallInvoker> jsInvoker) :
-      NativeMultiplyCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
+      NativeUtilCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
 
     }
 
-    double multiply(jsi::Runtime &rt, double a, double b) override {
+    jsi::String platformDetailsString(jsi::Runtime &rt) override {
       static_assert(
-          bridging::getParameterCount(&T::multiply) == 3,
-          "Expected multiply(...) to have 3 parameters");
+          bridging::getParameterCount(&T::platformDetailsString) == 1,
+          "Expected platformDetailsString(...) to have 1 parameters");
 
-      return bridging::callFromJs<double>(
-          rt, &T::multiply, jsInvoker_, instance_, std::move(a), std::move(b));
+      return bridging::callFromJs<jsi::String>(
+          rt, &T::platformDetailsString, jsInvoker_, instance_);
     }
 
   private:
-    friend class NativeMultiplyCxxSpec;
+    friend class NativeUtilCxxSpec;
     T *instance_;
   };
 

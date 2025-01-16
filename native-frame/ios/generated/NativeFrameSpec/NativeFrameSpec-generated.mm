@@ -59,7 +59,7 @@ namespace facebook::react {
   }
 } // namespace facebook::react
 
-@implementation NativeMultiplySpecBase
+@implementation NativeUtilSpecBase
 
 
 - (void)setEventEmitterCallback:(EventEmitterCallbackWrapper *)eventEmitterCallbackWrapper
@@ -71,14 +71,14 @@ namespace facebook::react {
 
 namespace facebook::react {
   
-    static facebook::jsi::Value __hostFunction_NativeMultiplySpecJSI_multiply(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, NumberKind, "multiply", @selector(multiply:b:), args, count);
+    static facebook::jsi::Value __hostFunction_NativeUtilSpecJSI_platformDetailsString(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, StringKind, "platformDetailsString", @selector(platformDetailsString), args, count);
     }
 
-  NativeMultiplySpecJSI::NativeMultiplySpecJSI(const ObjCTurboModule::InitParams &params)
+  NativeUtilSpecJSI::NativeUtilSpecJSI(const ObjCTurboModule::InitParams &params)
     : ObjCTurboModule(params) {
       
-        methodMap_["multiply"] = MethodMetadata {2, __hostFunction_NativeMultiplySpecJSI_multiply};
+        methodMap_["platformDetailsString"] = MethodMetadata {0, __hostFunction_NativeUtilSpecJSI_platformDetailsString};
         
   }
 } // namespace facebook::react

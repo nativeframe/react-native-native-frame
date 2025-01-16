@@ -25,11 +25,11 @@ public:
 };
 
 /**
- * JNI C++ class for module 'NativeMultiply'
+ * JNI C++ class for module 'NativeUtil'
  */
-class JSI_EXPORT NativeMultiplySpecJSI : public JavaTurboModule {
+class JSI_EXPORT NativeUtilSpecJSI : public JavaTurboModule {
 public:
-  NativeMultiplySpecJSI(const JavaTurboModule::InitParams &params);
+  NativeUtilSpecJSI(const JavaTurboModule::InitParams &params);
 };
 
 

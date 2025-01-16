@@ -48,6 +48,17 @@ class NFVideoPlayer : LinearLayoutCompat {
     }
   }
 
+  fun setWebm(webm: String) {
+    binding?.let {
+      it.player.player?.release()
+
+      it.player.player = ExoPlayer.Builder(context).build().apply {
+        setMediaItem(MediaItem.fromUri(webm))
+        prepare()
+      }
+    }
+  }
+
   fun release() {
     binding?.player?.let {
       it.player?.release()

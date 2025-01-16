@@ -24,6 +24,9 @@ public class NFVideoPlayerManagerDelegate<T extends View, U extends BaseViewMana
       case "hls":
         mViewManager.setHls(view, value == null ? null : (String) value);
         break;
+      case "webm":
+        mViewManager.setWebm(view, value == null ? null : (String) value);
+        break;
       default:
         super.setProperty(view, propName, value);
     }

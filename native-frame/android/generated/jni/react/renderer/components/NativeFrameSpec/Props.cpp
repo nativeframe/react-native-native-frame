@@ -26,7 +26,8 @@ NFVideoPlayerProps::NFVideoPlayerProps(
     const NFVideoPlayerProps &sourceProps,
     const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
 
-    hls(convertRawProp(context, rawProps, "hls", sourceProps.hls, {}))
+    hls(convertRawProp(context, rawProps, "hls", sourceProps.hls, {})),
+    webm(convertRawProp(context, rawProps, "webm", sourceProps.webm, {}))
       {}
 
 } // namespace facebook::react

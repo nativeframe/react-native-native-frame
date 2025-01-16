@@ -60,14 +60,13 @@ namespace facebook::react {
   };
 } // namespace facebook::react
 
-@protocol NativeMultiplySpec <RCTBridgeModule, RCTTurboModule>
+@protocol NativeUtilSpec <RCTBridgeModule, RCTTurboModule>
 
-- (NSNumber *)multiply:(double)a
-                     b:(double)b;
+- (NSString *)platformDetailsString;
 
 @end
 
-@interface NativeMultiplySpecBase : NSObject {
+@interface NativeUtilSpecBase : NSObject {
 @protected
 facebook::react::EventEmitterCallback _eventEmitterCallback;
 }
@@ -78,11 +77,11 @@ facebook::react::EventEmitterCallback _eventEmitterCallback;
 
 namespace facebook::react {
   /**
-   * ObjC++ class for module 'NativeMultiply'
+   * ObjC++ class for module 'NativeUtil'
    */
-  class JSI_EXPORT NativeMultiplySpecJSI : public ObjCTurboModule {
+  class JSI_EXPORT NativeUtilSpecJSI : public ObjCTurboModule {
   public:
-    NativeMultiplySpecJSI(const ObjCTurboModule::InitParams &params);
+    NativeUtilSpecJSI(const ObjCTurboModule::InitParams &params);
   };
 } // namespace facebook::react
 

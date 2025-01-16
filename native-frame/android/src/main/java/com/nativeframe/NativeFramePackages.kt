@@ -4,8 +4,8 @@ package com.nativeframe
 object NativeFramePackages {
   val packages = listOf(
     //modules
-    NativeFramePackage(),
-    NativeLocalStoragePackage(),
+    NFUtilPackage(),
+    NFLocalStoragePackage(),
 
     //components
     NFButtonPackage(),

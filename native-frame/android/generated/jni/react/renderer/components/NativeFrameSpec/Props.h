@@ -32,6 +32,7 @@ class NFVideoPlayerProps final : public ViewProps {
 #pragma mark - Props
 
   std::string hls{};
+  std::string webm{};
 };
 
 } // namespace facebook::react

@@ -39,22 +39,22 @@ NativeLocalStorageSpecJSI::NativeLocalStorageSpecJSI(const JavaTurboModule::Init
   methodMap_["removeItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageSpecJSI_removeItem};
   methodMap_["clear"] = MethodMetadata {0, __hostFunction_NativeLocalStorageSpecJSI_clear};
 }
-static facebook::jsi::Value __hostFunction_NativeMultiplySpecJSI_multiply(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+static facebook::jsi::Value __hostFunction_NativeUtilSpecJSI_platformDetailsString(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
   static jmethodID cachedMethodId = nullptr;
-  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, NumberKind, "multiply", "(DD)D", args, count, cachedMethodId);
+  return static_cast<JavaTurboModule &>(turboModule).invokeJavaMethod(rt, StringKind, "platformDetailsString", "()Ljava/lang/String;", args, count, cachedMethodId);
 }
 
-NativeMultiplySpecJSI::NativeMultiplySpecJSI(const JavaTurboModule::InitParams &params)
+NativeUtilSpecJSI::NativeUtilSpecJSI(const JavaTurboModule::InitParams &params)
   : JavaTurboModule(params) {
-  methodMap_["multiply"] = MethodMetadata {2, __hostFunction_NativeMultiplySpecJSI_multiply};
+  methodMap_["platformDetailsString"] = MethodMetadata {0, __hostFunction_NativeUtilSpecJSI_platformDetailsString};
 }
 
 std::shared_ptr<TurboModule> NativeFrameSpec_ModuleProvider(const std::string &moduleName, const JavaTurboModule::InitParams &params) {
   if (moduleName == "NativeLocalStorage") {
     return std::make_shared<NativeLocalStorageSpecJSI>(params);
   }
-  if (moduleName == "NativeMultiply") {
-    return std::make_shared<NativeMultiplySpecJSI>(params);
+  if (moduleName == "NativeUtil") {
+    return std::make_shared<NativeUtilSpecJSI>(params);
   }
   return nullptr;
 }

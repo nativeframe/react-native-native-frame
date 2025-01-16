@@ -14,4 +14,5 @@ import androidx.annotation.Nullable;
 
 public interface NFVideoPlayerManagerInterface<T extends View> {
   void setHls(T view, @Nullable String value);
+  void setWebm(T view, @Nullable String value);
 }

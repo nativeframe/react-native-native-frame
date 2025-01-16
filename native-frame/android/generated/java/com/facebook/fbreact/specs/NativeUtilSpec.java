@@ -10,7 +10,7 @@
  * @nolint
  */
 
-package com.nativeframe;
+package com.facebook.fbreact.specs;
 
 import com.facebook.proguard.annotations.DoNotStrip;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -19,10 +19,10 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.turbomodule.core.interfaces.TurboModule;
 import javax.annotation.Nonnull;
 
-public abstract class NativeMultiplySpec extends ReactContextBaseJavaModule implements TurboModule {
-  public static final String NAME = "NativeMultiply";
+public abstract class NativeUtilSpec extends ReactContextBaseJavaModule implements TurboModule {
+  public static final String NAME = "NativeUtil";
 
-  public NativeMultiplySpec(ReactApplicationContext reactContext) {
+  public NativeUtilSpec(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
@@ -33,5 +33,5 @@ public abstract class NativeMultiplySpec extends ReactContextBaseJavaModule impl
 
   @ReactMethod(isBlockingSynchronousMethod = true)
   @DoNotStrip
-  public abstract double multiply(double a, double b);
+  public abstract String platformDetailsString();
 }
