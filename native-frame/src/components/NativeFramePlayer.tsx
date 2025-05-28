@@ -11,6 +11,7 @@ import {
   isGenericFormat,
 } from '@video/video-client-core/lib/api';
 import { CorePlayer } from '@video/video-client-core/lib/internal/player/core';
+// import { MediaStream } from '@videomobile/react-native-webrtc';
 
 type NativeDrivers = 'webrtc' | 'native-hls';
 type NativeFormats = 'webrtc' | 'mp4-hls';
@@ -194,23 +195,23 @@ export class NativeFramePlayer
         if (!call) return;
 
         call.on('streamAdded', (event) => {
-          event.stream.on('source', (stream) => {
-            const tracks = stream.getTracks();
+          event.stream.on('source', (_stream) => {
+            // const tracks = stream.getTracks();
             if (this.mediaStream) {
-              tracks.forEach((track) => {
-                this.mediaStream?.removeTrack(track as any);
-              });
+              // tracks.forEach((track) => {
+              //   this.mediaStream?.removeTrack(track as any);
+              // });
             }
 
             // Crete new media stream to see quality changes
             this.mediaStream = new MediaStream();
 
-            tracks.forEach((track) => {
-              if (player.localAudioMuted && track.kind === 'audio')
-                track.enabled = false;
-              if (player.localVideoPaused) track.enabled = false;
-              this.mediaStream?.addTrack(track as any);
-            });
+            // tracks.forEach((track) => {
+            //   if (player.localAudioMuted && track.kind === 'audio')
+            //     track.enabled = false;
+            //   if (player.localVideoPaused) track.enabled = false;
+            //   this.mediaStream?.addTrack(track as any);
+            // });
 
             const mediaStreamURL = (this.mediaStream as any).toURL();
             this.setState({ source: mediaStreamURL });
@@ -240,10 +241,10 @@ export class NativeFramePlayer
 
       (player as any).provider?.on('videoPaused', (paused: boolean) => {
         if (this.state.format === 'webrtc' && this.mediaStream) {
-          const tracks = this.mediaStream.getTracks();
-          tracks.forEach((track) => {
-            track.enabled = !paused;
-          });
+          // const tracks = this.mediaStream.getTracks();
+          // tracks.forEach((track) => {
+          //   track.enabled = !paused;
+          // });
         }
 
         if (paused) {
@@ -257,12 +258,12 @@ export class NativeFramePlayer
 
       (player as any).provider?.on('audioMuted', (muted: boolean) => {
         if (this.state.format === 'webrtc' && this.mediaStream) {
-          const tracks = this.mediaStream.getTracks();
-          tracks.forEach((track) => {
-            if (track.kind === 'audio') {
-              track.enabled = !muted;
-            }
-          });
+          // const tracks = this.mediaStream.getTracks();
+          // tracks.forEach((track) => {
+          //   if (track.kind === 'audio') {
+          //     track.enabled = !muted;
+          //   }
+          // });
         }
         this.events.onMute(muted);
       });
@@ -282,10 +283,10 @@ export class NativeFramePlayer
     this.player.localVideoPaused = true;
 
     if (this.state.format === 'webrtc' && this.mediaStream) {
-      const tracks = this.mediaStream.getTracks();
-      tracks.forEach((track) => {
-        track.enabled = false;
-      });
+      // const tracks = this.mediaStream.getTracks();
+      // tracks.forEach((track) => {
+      //   track.enabled = false;
+      // });
     }
     this.setState({ paused: true });
     this.events.onVideoPaused();
@@ -296,10 +297,10 @@ export class NativeFramePlayer
     this.player.localVideoPaused = false;
 
     if (this.state.format === 'webrtc' && this.mediaStream) {
-      const tracks = this.mediaStream.getTracks();
-      tracks.forEach((track) => {
-        track.enabled = true;
-      });
+      // const tracks = this.mediaStream.getTracks();
+      // tracks.forEach((track) => {
+      //   track.enabled = true;
+      // });
     }
     this.setState({ paused: false });
     this.events.onVideoPlay();
@@ -311,12 +312,12 @@ export class NativeFramePlayer
     this.player.localAudioMuted = newMuteValue;
 
     if (this.state.format === 'webrtc' && this.mediaStream) {
-      const tracks = this.mediaStream.getTracks();
-      tracks.forEach((track) => {
-        if (track.kind === 'audio') {
-          track.enabled = !newMuteValue;
-        }
-      });
+      // const tracks = this.mediaStream.getTracks();
+      // tracks.forEach((track) => {
+      //   if (track.kind === 'audio') {
+      //     track.enabled = !newMuteValue;
+      //   }
+      // });
     }
     this.setState({ muted: newMuteValue });
     this.events.onMute(newMuteValue);
@@ -337,9 +338,9 @@ export class NativeFramePlayer
   onRequestReloadPlayer = () => {
     this.resetState(() => {
       if (this.mediaStream) {
-        this.mediaStream.getTracks().forEach((track) => {
-          this.mediaStream?.removeTrack(track);
-        });
+        // this.mediaStream.getTracks().forEach((track) => {
+        //   this.mediaStream?.removeTrack(track);
+        // });
       }
       this.player?.dispose();
       this.player = null;

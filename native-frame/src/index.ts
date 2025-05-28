@@ -1,2 +1,3 @@
-export * from './components';
-// export * from '../specs';
+import { NativeFrame } from './NativeNativeFrame';
+
+export { NativeFrame };

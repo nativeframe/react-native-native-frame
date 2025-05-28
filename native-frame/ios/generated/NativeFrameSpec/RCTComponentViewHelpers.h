@@ -13,7 +13,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol RCTNFBroadcasterViewProtocol <NSObject>
+
+@end
+
 @protocol RCTNFButtonViewProtocol <NSObject>
+
+@end
+
+@protocol RCTNFManifestPlayerViewProtocol <NSObject>
 
 @end
 

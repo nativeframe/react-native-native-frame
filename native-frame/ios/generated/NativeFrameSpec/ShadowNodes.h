@@ -18,6 +18,17 @@
 
 namespace facebook::react {
 
+JSI_EXPORT extern const char NFBroadcasterComponentName[];
+
+/*
+ * `ShadowNode` for <NFBroadcaster> component.
+ */
+using NFBroadcasterShadowNode = ConcreteViewShadowNode<
+    NFBroadcasterComponentName,
+    NFBroadcasterProps,
+    NFBroadcasterEventEmitter,
+    NFBroadcasterState>;
+
 JSI_EXPORT extern const char NFButtonComponentName[];
 
 /*
@@ -28,6 +39,17 @@ using NFButtonShadowNode = ConcreteViewShadowNode<
     NFButtonProps,
     NFButtonEventEmitter,
     NFButtonState>;
+
+JSI_EXPORT extern const char NFManifestPlayerComponentName[];
+
+/*
+ * `ShadowNode` for <NFManifestPlayer> component.
+ */
+using NFManifestPlayerShadowNode = ConcreteViewShadowNode<
+    NFManifestPlayerComponentName,
+    NFManifestPlayerProps,
+    NFManifestPlayerEventEmitter,
+    NFManifestPlayerState>;
 
 JSI_EXPORT extern const char NFVideoPlayerComponentName[];
 

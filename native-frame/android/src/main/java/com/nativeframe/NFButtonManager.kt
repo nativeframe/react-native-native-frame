@@ -28,4 +28,14 @@ class NFButtonManager : SimpleViewManager<NFButton>(),
   override fun setText(view: NFButton?, value: String?) {
     view?.text = value
   }
+
+  override fun getExportedCustomBubblingEventTypeConstants(): Map<String, Any> =
+    mapOf(
+      "onClicked" to
+        mapOf(
+          "phasedRegistrationNames" to
+            mapOf(
+              "bubbled" to "onClicked",
+              "captured" to "onClickedCapture"
+            )))
 }

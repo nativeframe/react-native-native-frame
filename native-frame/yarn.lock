@@ -2270,16 +2270,12 @@ __metadata:
   dependencies:
     "@commitlint/config-conventional": ^17.0.2
     "@evilmartians/lefthook": ^1.5.0
-    "@react-native-async-storage/async-storage": 2.0.0
     "@react-native-community/cli": 15.0.1
-    "@react-native-community/netinfo": 11.4.1
     "@react-native/eslint-config": ^0.73.1
     "@release-it/conventional-changelog": ^9.0.2
     "@types/jest": ^29.5.5
     "@types/react": ^18.2.44
     "@video/video-client-core": 13.2.0
-    "@videomobile/react-native-webrtc": 124.0.4
-    "@videorn/video-client-reactnative": 9.0.0
     commitlint: ^17.0.2
     del-cli: ^5.1.0
     eslint: ^8.51.0
@@ -2291,7 +2287,6 @@ __metadata:
     react-native: 0.76.5
     react-native-builder-bob: ^0.32.0
     react-native-gradle-plugin: ^0.71.19
-    react-native-video: ^6.8.2
     release-it: ^17.10.0
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -2525,17 +2520,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-async-storage/async-storage@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@react-native-async-storage/async-storage@npm:2.0.0"
-  dependencies:
-    merge-options: ^3.0.4
-  peerDependencies:
-    react-native: ^0.0.0-0 || >=0.65 <1.0
-  checksum: 7007a411f13988594a3f9b5ebb29f1554ab65ff2bd90814fa8b125fa68b69c431bdfcd38769ae2dcb6505aec2bad9296f0a0fa1ac8f123007eda49c826f2d138
-  languageName: node
-  linkType: hard
-
 "@react-native-community/cli-clean@npm:15.0.1":
   version: 15.0.1
   resolution: "@react-native-community/cli-clean@npm:15.0.1"
@@ -2711,15 +2695,6 @@ __metadata:
   bin:
     rnc-cli: build/bin.js
   checksum: 26c98ef67b4b89d3af13f2a3b19e51c7b2de5d320ca908cb628ca22b32bff5a17b8a1cc7f4b0ece303c4e53dc10e8ac0e88df9b376e63ebc97acb8d358f78c2e
-  languageName: node
-  linkType: hard
-
-"@react-native-community/netinfo@npm:11.4.1":
-  version: 11.4.1
-  resolution: "@react-native-community/netinfo@npm:11.4.1"
-  peerDependencies:
-    react-native: ">=0.59"
-  checksum: d347ae522da6b8c045d6378754d4928bdf23cc85b74571b91fa8a03fa168bdac5e3c65eb97eac0dd0c7cbd20e782f99d41b090fb79ce7d815cbaf6fb5d1abe37
   languageName: node
   linkType: hard
 
@@ -3091,7 +3066,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:^4.1.7, @types/debug@npm:^4.1.8":
+"@types/debug@npm:^4.1.7":
   version: 4.1.12
   resolution: "@types/debug@npm:4.1.12"
   dependencies:
@@ -3480,36 +3455,6 @@ __metadata:
     tslib: ^2.6.2
     zod: ^3.22.4
   checksum: 04706644ea6950c116596ee96fc09a5043fbd1b1f832133dbb09f6a7b0111bd06b01619882f3dd22517c475c18bed99b3daef744f880ab9f8bf1af064b28f743
-  languageName: node
-  linkType: hard
-
-"@videomobile/react-native-webrtc@npm:124.0.4":
-  version: 124.0.4
-  resolution: "@videomobile/react-native-webrtc@npm:124.0.4"
-  dependencies:
-    base64-js: 1.5.1
-    debug: 4.3.4
-    event-target-shim: 6.0.2
-  peerDependencies:
-    react-native: ">=0.60.0"
-  checksum: 5f36f2eacf68bdd192c8cc4afde8037999e6dec9bf41e57552e2e0d46dd93b9e5ac75aff009ae643147bbf64024374923f986d00423745fe00f22caccbefaf72
-  languageName: node
-  linkType: hard
-
-"@videorn/video-client-reactnative@npm:9.0.0":
-  version: 9.0.0
-  resolution: "@videorn/video-client-reactnative@npm:9.0.0"
-  dependencies:
-    "@react-native-async-storage/async-storage": 2.0.0
-    "@react-native-community/netinfo": 11.4.1
-    "@video/events-typed": 4.0.0
-    "@video/video-client-core": 13.2.0
-    "@videomobile/react-native-webrtc": 124.0.4
-    mediasoup-client: 3.6.100
-    react-native: 0.76.5
-    react-native-user-agent: 2.3.1
-    tslib: ^2.8.0
-  checksum: 5cc8ee0c77ec87c1ac1d74a3db23832a7c4aae559b79e943a845593bf5551094e83841300a1cb33688b77a7c6cbbda7f367675c96901b08d11e8803575636f75
   languageName: node
   linkType: hard
 
@@ -4130,7 +4075,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:1.5.1, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
+"base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
@@ -5254,18 +5199,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4.3.4":
-  version: 4.3.4
-  resolution: "debug@npm:4.3.4"
-  dependencies:
-    ms: 2.1.2
-  peerDependenciesMeta:
-    supports-color:
-      optional: true
-  checksum: 3dbad3f94ea64f34431a9cbf0bafb61853eda57bff2880036153438f50fb5a84f27683ba0d8e5426bf41a8c6ff03879488120cf5b3a761e77953169c0600a708
-  languageName: node
-  linkType: hard
-
 "decamelize-keys@npm:^1.1.0":
   version: 1.1.1
   resolution: "decamelize-keys@npm:1.1.1"
@@ -6207,17 +6140,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"event-target-shim@npm:6.0.2, event-target-shim@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "event-target-shim@npm:6.0.2"
-  checksum: 9be93437e5b84056a7dc70af8b8962f4ef7f6fd41a988efcd39dfa2853e33242a4058e0dac9cc589cb16ed7409010590ac8cbcc2e3f823100cd337e13be953a0
-  languageName: node
-  linkType: hard
-
 "event-target-shim@npm:^5.0.0, event-target-shim@npm:^5.0.1":
   version: 5.0.1
   resolution: "event-target-shim@npm:5.0.1"
   checksum: 1ffe3bb22a6d51bdeb6bf6f7cf97d2ff4a74b017ad12284cc9e6a279e727dc30a5de6bb613e5596ff4dc3e517841339ad09a7eec44266eccb1aa201a30448166
+  languageName: node
+  linkType: hard
+
+"event-target-shim@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "event-target-shim@npm:6.0.2"
+  checksum: 9be93437e5b84056a7dc70af8b8962f4ef7f6fd41a988efcd39dfa2853e33242a4058e0dac9cc589cb16ed7409010590ac8cbcc2e3f823100cd337e13be953a0
   languageName: node
   linkType: hard
 
@@ -6356,7 +6289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fake-mediastreamtrack@npm:^1.1.6, fake-mediastreamtrack@npm:^1.2.0":
+"fake-mediastreamtrack@npm:^1.1.6":
   version: 1.2.0
   resolution: "fake-mediastreamtrack@npm:1.2.0"
   dependencies:
@@ -7813,13 +7746,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-plain-obj@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "is-plain-obj@npm:2.1.0"
-  checksum: cec9100678b0a9fe0248a81743041ed990c2d4c99f893d935545cfbc42876cbe86d207f3b895700c690ad2fa520e568c44afc1605044b535a7820c1d40e38daa
-  languageName: node
-  linkType: hard
-
 "is-plain-object@npm:^2.0.4":
   version: 2.0.4
   resolution: "is-plain-object@npm:2.0.4"
@@ -9209,24 +9135,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mediasoup-client@npm:3.6.100":
-  version: 3.6.100
-  resolution: "mediasoup-client@npm:3.6.100"
-  dependencies:
-    "@types/debug": ^4.1.8
-    awaitqueue: ^3.0.1
-    debug: ^4.3.4
-    events: ^3.3.0
-    fake-mediastreamtrack: ^1.2.0
-    h264-profile-level-id: ^1.0.1
-    queue-microtask: ^1.2.3
-    sdp-transform: ^2.14.1
-    supports-color: ^9.4.0
-    ua-parser-js: ^1.0.35
-  checksum: 05ce8af4e9e7e7a764219e7ad0f61bb5c1ec97c186bfc3dc5fe09c09f7cc41c8833be1b3e9b3524458e838439286bafc5b577da30b8f31c55ee93fa6e3d3b06c
-  languageName: node
-  linkType: hard
-
 "mediasoup-client@npm:3.6.84":
   version: 3.6.84
   resolution: "mediasoup-client@npm:3.6.84"
@@ -9302,15 +9210,6 @@ __metadata:
   version: 1.0.3
   resolution: "merge-descriptors@npm:1.0.3"
   checksum: 52117adbe0313d5defa771c9993fe081e2d2df9b840597e966aadafde04ae8d0e3da46bac7ca4efc37d4d2b839436582659cd49c6a43eacb3fe3050896a105d1
-  languageName: node
-  linkType: hard
-
-"merge-options@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "merge-options@npm:3.0.4"
-  dependencies:
-    is-plain-obj: ^2.1.0
-  checksum: d86ddb3dd6e85d558dbf25dc944f3527b6bacb944db3fdda6e84a3f59c4e4b85231095f58b835758b9a57708342dee0f8de0dffa352974a48221487fe9f4584f
   languageName: node
   linkType: hard
 
@@ -10067,13 +9966,6 @@ __metadata:
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
   checksum: 0e6a22b8b746d2e0b65a430519934fefd41b6db0682e3477c10f60c76e947c4c0ad06f63ffdf1d78d335f83edee8c0aa928aa66a36c7cd95b69b26f468d527f4
-  languageName: node
-  linkType: hard
-
-"ms@npm:2.1.2":
-  version: 2.1.2
-  resolution: "ms@npm:2.1.2"
-  checksum: 673cdb2c3133eb050c745908d8ce632ed2c02d85640e2edb3ace856a2266a813b30c613569bf3354fdf4ea7d1a1494add3bfa95e2713baa27d0c2c71fc44f58f
   languageName: node
   linkType: hard
 
@@ -11220,25 +11112,6 @@ __metadata:
   version: 0.71.19
   resolution: "react-native-gradle-plugin@npm:0.71.19"
   checksum: 2e3ab679f0b81edd81b9fb88a73a16c8b9b6dbef4e7158fd894c42e6dff04ba8d11f1b9663ffa2c30d0d9deee3cd44b033cd280322c010be3c290e4422088a7a
-  languageName: node
-  linkType: hard
-
-"react-native-user-agent@npm:2.3.1":
-  version: 2.3.1
-  resolution: "react-native-user-agent@npm:2.3.1"
-  peerDependencies:
-    react-native: "*"
-  checksum: fc713e6e235e4c82db04fdade95fb03463c69c75c146f45d4e6e60d363ecc83c71cb17500f39bb577e143e6286f1167758272cc53c88be76b4c3628e5f41283f
-  languageName: node
-  linkType: hard
-
-"react-native-video@npm:^6.8.2":
-  version: 6.9.0
-  resolution: "react-native-video@npm:6.9.0"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: f4df3f930abf789434fc7236a1f9e933e1c90e5e874dee0815ae2031a89dd136929ee2e5ee5ce1f74205006da7a90ef3bf909184b55f9794f4c60d3241ac03e7
   languageName: node
   linkType: hard
 
@@ -12666,7 +12539,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^9.3.1, supports-color@npm:^9.4.0":
+"supports-color@npm:^9.3.1":
   version: 9.4.0
   resolution: "supports-color@npm:9.4.0"
   checksum: cb8ff8daeaf1db642156f69a9aa545b6c01dd9c4def4f90a49f46cbf24be0c245d392fcf37acd119cd1819b99dad2cc9b7e3260813f64bcfd7f5b18b5a1eefb8
@@ -12883,7 +12756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.4.1, tslib@npm:^2.6.2, tslib@npm:^2.8.0":
+"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.4.1, tslib@npm:^2.6.2":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
@@ -13138,15 +13011,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 633cd749d6cd7bc842c6b6245847173bba99742a60776fae3c0fbcc0d1733cd51a733995e5f4dadd8afb0e64e57d3c7dbbeae953a072ee303940eca69e22f311
-  languageName: node
-  linkType: hard
-
-"ua-parser-js@npm:^1.0.35":
-  version: 1.0.40
-  resolution: "ua-parser-js@npm:1.0.40"
-  bin:
-    ua-parser-js: script/cli.js
-  checksum: ae555a33dc9395dd877e295d6adbf5634e047aad7c3358328830218f3ca3a6233e35848cd355465a7612f269860e8029984389282940c7a27c9af4dfcdbba8c3
   languageName: node
   linkType: hard
 

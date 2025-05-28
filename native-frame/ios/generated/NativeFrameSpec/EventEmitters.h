@@ -13,12 +13,30 @@
 
 
 namespace facebook::react {
-class NFButtonEventEmitter : public ViewEventEmitter {
+class NFBroadcasterEventEmitter : public ViewEventEmitter {
  public:
   using ViewEventEmitter::ViewEventEmitter;
 
   
   
+};
+class NFButtonEventEmitter : public ViewEventEmitter {
+ public:
+  using ViewEventEmitter::ViewEventEmitter;
+
+  struct OnClicked {
+      
+    };
+  void onClicked(OnClicked value) const;
+};
+class NFManifestPlayerEventEmitter : public ViewEventEmitter {
+ public:
+  using ViewEventEmitter::ViewEventEmitter;
+
+  struct OnClicked {
+      
+    };
+  void onClicked(OnClicked value) const;
 };
 class NFVideoPlayerEventEmitter : public ViewEventEmitter {
  public:

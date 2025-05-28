@@ -14,12 +14,36 @@
 
 namespace facebook::react {
 
+class NFBroadcasterState {
+public:
+  NFBroadcasterState() = default;
+
+#ifdef ANDROID
+  NFBroadcasterState(NFBroadcasterState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
 class NFButtonState {
 public:
   NFButtonState() = default;
 
 #ifdef ANDROID
   NFButtonState(NFButtonState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
+class NFManifestPlayerState {
+public:
+  NFManifestPlayerState() = default;
+
+#ifdef ANDROID
+  NFManifestPlayerState(NFManifestPlayerState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
   };

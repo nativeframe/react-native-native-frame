@@ -14,12 +14,26 @@
 
 namespace facebook::react {
 
+NFBroadcasterProps::NFBroadcasterProps(
+    const PropsParserContext &context,
+    const NFBroadcasterProps &sourceProps,
+    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
+
+    uri(convertRawProp(context, rawProps, "uri", sourceProps.uri, {}))
+      {}
 NFButtonProps::NFButtonProps(
     const PropsParserContext &context,
     const NFButtonProps &sourceProps,
     const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
 
     text(convertRawProp(context, rawProps, "text", sourceProps.text, {}))
+      {}
+NFManifestPlayerProps::NFManifestPlayerProps(
+    const PropsParserContext &context,
+    const NFManifestPlayerProps &sourceProps,
+    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
+
+    manifestUri(convertRawProp(context, rawProps, "manifestUri", sourceProps.manifestUri, {}))
       {}
 NFVideoPlayerProps::NFVideoPlayerProps(
     const PropsParserContext &context,

@@ -16,7 +16,9 @@ namespace facebook::react {
 
 void NativeFrameSpec_registerComponentDescriptorsFromCodegen(
   std::shared_ptr<const ComponentDescriptorProviderRegistry> registry) {
+registry->add(concreteComponentDescriptorProvider<NFBroadcasterComponentDescriptor>());
 registry->add(concreteComponentDescriptorProvider<NFButtonComponentDescriptor>());
+registry->add(concreteComponentDescriptorProvider<NFManifestPlayerComponentDescriptor>());
 registry->add(concreteComponentDescriptorProvider<NFVideoPlayerComponentDescriptor>());
 }
 

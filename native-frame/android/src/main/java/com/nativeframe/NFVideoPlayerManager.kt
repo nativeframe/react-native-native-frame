@@ -31,7 +31,8 @@ class NFVideoPlayerManager : SimpleViewManager<NFVideoPlayer>(),
       view?.setHls(value)
     }
   }
-
+  
+  @ReactProp(name = "webm")
   override fun setWebm(view: NFVideoPlayer?, value: String?) {
     value?.let { view?.setWebm(it) }
   }

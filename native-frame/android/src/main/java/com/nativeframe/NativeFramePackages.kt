@@ -6,9 +6,12 @@ object NativeFramePackages {
     //modules
     NFUtilPackage(),
     NFLocalStoragePackage(),
+    EventsPackage(),
 
     //components
     NFButtonPackage(),
-    NFVideoPlayerPackage()
+    NFVideoPlayerPackage(),
+    NFManifestPlayerPackage(),
+    NFBroadcasterPackage()
   )
 }

@@ -14,6 +14,16 @@
 
 namespace facebook::react {
 
+class NFBroadcasterProps final : public ViewProps {
+ public:
+  NFBroadcasterProps() = default;
+  NFBroadcasterProps(const PropsParserContext& context, const NFBroadcasterProps &sourceProps, const RawProps &rawProps);
+
+#pragma mark - Props
+
+  std::string uri{};
+};
+
 class NFButtonProps final : public ViewProps {
  public:
   NFButtonProps() = default;
@@ -22,6 +32,16 @@ class NFButtonProps final : public ViewProps {
 #pragma mark - Props
 
   std::string text{};
+};
+
+class NFManifestPlayerProps final : public ViewProps {
+ public:
+  NFManifestPlayerProps() = default;
+  NFManifestPlayerProps(const PropsParserContext& context, const NFManifestPlayerProps &sourceProps, const RawProps &rawProps);
+
+#pragma mark - Props
+
+  std::string manifestUri{};
 };
 
 class NFVideoPlayerProps final : public ViewProps {

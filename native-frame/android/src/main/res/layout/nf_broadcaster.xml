@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <Button
+    android:id="@+id/goLive"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:text="Go Live"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/disableCam"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Disable Camera"
+    app:layout_constraintStart_toEndOf="@id/goLive"
+    app:layout_constraintTop_toTopOf="@id/goLive" />
+
+  <Button
+    android:id="@+id/disableMic"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Disable Mic"
+    app:layout_constraintStart_toEndOf="@id/disableCam"
+    app:layout_constraintTop_toTopOf="@id/goLive" />
+
+  <androidx.camera.view.PreviewView
+    android:id="@+id/camera_preview"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_marginTop="12dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/goLive"
+    tools:background="@android:drawable/presence_offline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

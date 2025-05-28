@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.77",
+  "version": "0.9.116",
   "description": "React native package for streaming",
   "source": "./src/app.tsx",
   "main": "./index.js",
@@ -40,9 +40,9 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "clean-full": "rm -rf node_modules && rm -rf example/node_modules/ && rm -rf android/build && rm -rf example/android/build && rm -rf example/android/app/build && rm -rf android/build",
-    "prepare": "rm -rf lib && bob build && npx @react-native-community/cli codegen",
+    "prepare": "rm -rf lib && bob build && npx @react-native-community/cli codegen --verbose",
     "release": "release-it",
-    "publish": "yarn prepare && yarn npm publish --access=public"
+    "publish": "yarn && yarn prepare && yarn npm publish --access=public"
   },
   "keywords": [
     "react-native",
@@ -65,13 +65,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "2.0.0",
-    "@react-native-community/netinfo": "11.4.1",
     "@video/video-client-core": "13.2.0",
-    "@videomobile/react-native-webrtc": "124.0.4",
-    "@videorn/video-client-reactnative": "9.0.0",
-    "react-native-gradle-plugin": "^0.71.19",
-    "react-native-video": "^6.8.2"
+    "react-native-gradle-plugin": "^0.71.19"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
@@ -102,8 +97,6 @@
     "react": "*",
     "react-native": "*"
   },
-  "workspaces": [
-  ],
   "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",

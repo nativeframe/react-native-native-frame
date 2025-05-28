@@ -14,4 +14,22 @@
 namespace facebook::react {
 
 
+void NFButtonEventEmitter::onClicked(OnClicked $event) const {
+  dispatchEvent("clicked", [](jsi::Runtime &runtime) {
+    auto $payload = jsi::Object(runtime);
+    
+    return $payload;
+  });
+}
+
+
+void NFManifestPlayerEventEmitter::onClicked(OnClicked $event) const {
+  dispatchEvent("clicked", [](jsi::Runtime &runtime) {
+    auto $payload = jsi::Object(runtime);
+    
+    return $payload;
+  });
+}
+
+
 } // namespace facebook::react
