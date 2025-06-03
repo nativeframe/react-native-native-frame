@@ -119,6 +119,7 @@ dependencies {
   implementation "androidx.media3:media3-exoplayer-dash:$vMedia3"
   implementation "androidx.media3:media3-ui:$vMedia3"
   implementation "androidx.media3:media3-exoplayer-hls:$vMedia3"
+  implementation "androidx.media3:media3-datasource-rtmp:$vMedia3"
 
   implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 }
