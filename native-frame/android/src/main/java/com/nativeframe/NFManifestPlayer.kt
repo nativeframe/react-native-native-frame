@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.text.trimmedLength
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import com.facebook.react.bridge.Arguments
@@ -43,21 +44,11 @@ class NFManifestPlayer : LinearLayoutCompat {
     binding = NfManifestPlayerBinding.inflate(LayoutInflater.from(context))
     addView(binding?.root)
 
-    binding?.uri?.addTextChangedListener(object : TextWatcher {
-      override fun beforeTextChanged(t: CharSequence?, p1: Int, p2: Int, p3: Int) {
-      }
-
-      override fun onTextChanged(t: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        emitter?.emit("manifestPlayer.uri.onChanged", Arguments.createMap().apply {
-          putString("uri", t?.toString())
-        })
-      }
-
-      override fun afterTextChanged(t: Editable) {
-
-      }
-
-    })
+    binding?.play?.setOnClickListener {
+      emitter?.emit("manifestPlayer.uri.onChanged", Arguments.createMap().apply {
+        putString("uri", binding?.uri?.text.toString())
+      })
+    }
     binding?.quality?.adapter = ArrayAdapter(
       context,
       android.R.layout.simple_spinner_item,
@@ -72,6 +63,9 @@ class NFManifestPlayer : LinearLayoutCompat {
   fun setManifestUri(uri: String) {
     binding?.let {
       it.player.player?.release()
+
+      if (uri.trimmedLength() == 0)
+        return
 
       it.player.player = ExoPlayer.Builder(context).build().apply {
         setMediaItem(MediaItem.fromUri(uri))

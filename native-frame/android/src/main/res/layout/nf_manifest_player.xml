@@ -10,8 +10,18 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="12dp"
     android:hint="Enter Manifest Url"
+    android:lines="2"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/play"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Watch"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/uri" />
 
   <androidx.media3.ui.PlayerView
     android:id="@+id/player"
@@ -21,7 +31,7 @@
     android:layout_marginTop="12dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/uri" />
+    app:layout_constraintTop_toBottomOf="@id/play" />
 
   <TextView
     android:id="@+id/labelQuality"
@@ -29,6 +39,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Select Video Quality"
+    android:visibility="invisible"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/player" />
 
@@ -36,6 +47,7 @@
     android:id="@+id/quality"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:visibility="invisible"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/labelQuality" />
 </androidx.constraintlayout.widget.ConstraintLayout>
