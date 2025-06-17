@@ -1,19 +1,16 @@
 package com.preview
 
-import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.common.util.concurrent.ListenableFuture
+import com.nativeframe.NativeFramePackages
 import com.nativeframe.databinding.NfBroadcasterBinding
 import com.nativeframe.databinding.NfManifestPlayerBinding
 import com.preview.databinding.ActivityMainBinding
@@ -56,13 +53,27 @@ class MainActivity : AppCompatActivity() {
     unloadCam()
   }
 
+  override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+  ) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+    if (requestCode == NativeFramePackages.PERMISSION_REQUEST_CODE && grantResults.isNotEmpty() &&
+      grantResults[0] == PackageManager.PERMISSION_GRANTED
+    ) {
+      loadCam()
+    }
+  }
+
   private fun unloadCam() {
     cameraProviderFuture?.get()?.unbindAll()
     cameraProviderFuture = null
   }
 
   private fun loadCam() {
-    if (!checkPermissions())
+    if (!NativeFramePackages.checkAppPermissions(this))
       return
 
     if (cameraProviderFuture != null)
@@ -80,29 +91,32 @@ class MainActivity : AppCompatActivity() {
     )
   }
 
-  private val requestPermissionLauncher =
-    registerForActivityResult(
-      ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-      if (isGranted) {
-        loadCam()
-      }
-    }
-
-  private fun checkPermissions(): Boolean {
-    var r = false
-    when {
-      ContextCompat.checkSelfPermission(
-        applicationContext,
-        Manifest.permission.CAMERA
-      ) == PackageManager.PERMISSION_GRANTED -> {
-        r = true
-      }
-      else -> {
-        requestPermissionLauncher.launch(Manifest.permission.CAMERA)
-      }
-    }
-
-    return r
-  }
+  //region permissions with launcher
+// private val requestPermissionLauncher =
+//   registerForActivityResult(
+//     ActivityResultContracts.RequestPermission()
+//   ) { isGranted: Boolean ->
+//     if (isGranted) {
+//       loadCam()
+//     }
+//   }
+//
+//  private fun checkPermissions(): Boolean {
+//    var r = false
+//    when {
+//      ContextCompat.checkSelfPermission(
+//        applicationContext,
+//        Manifest.permission.CAMERA
+//      ) == PackageManager.PERMISSION_GRANTED -> {
+//        r = true
+//      }
+//
+//      else -> {
+//        requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+//      }
+//    }
+//
+//    return r
+//  }
+  //endregion
 }
