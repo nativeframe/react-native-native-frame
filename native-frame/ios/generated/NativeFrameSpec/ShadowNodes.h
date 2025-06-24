@@ -40,6 +40,17 @@ using NFButtonShadowNode = ConcreteViewShadowNode<
     NFButtonEventEmitter,
     NFButtonState>;
 
+JSI_EXPORT extern const char NFCam2CamComponentName[];
+
+/*
+ * `ShadowNode` for <NFCam2Cam> component.
+ */
+using NFCam2CamShadowNode = ConcreteViewShadowNode<
+    NFCam2CamComponentName,
+    NFCam2CamProps,
+    NFCam2CamEventEmitter,
+    NFCam2CamState>;
+
 JSI_EXPORT extern const char NFManifestPlayerComponentName[];
 
 /*

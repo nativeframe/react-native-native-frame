@@ -37,6 +37,10 @@ class NFManifestPlayer : LinearLayoutCompat {
   }
 
   private fun setup(context: Context) {
+    (context as ReactContext?)?.let {
+      emitter = it.getJSModule(RCTDeviceEventEmitter::class.java)
+    }
+
     layoutParams = ViewGroup.LayoutParams(
       ViewGroup.LayoutParams.WRAP_CONTENT,
       ViewGroup.LayoutParams.WRAP_CONTENT
@@ -54,10 +58,6 @@ class NFManifestPlayer : LinearLayoutCompat {
       android.R.layout.simple_spinner_item,
       listOf("2960kbps", "1260kbps", "172kbps")
     )
-
-    (context as ReactContext?)?.let {
-      emitter = it.getJSModule(RCTDeviceEventEmitter::class.java)
-    }
   }
 
   fun setManifestUri(uri: String) {

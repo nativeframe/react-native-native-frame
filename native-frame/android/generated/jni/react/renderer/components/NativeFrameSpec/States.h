@@ -38,6 +38,18 @@ public:
 #endif
 };
 
+class NFCam2CamState {
+public:
+  NFCam2CamState() = default;
+
+#ifdef ANDROID
+  NFCam2CamState(NFCam2CamState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
 class NFManifestPlayerState {
 public:
   NFManifestPlayerState() = default;

@@ -29,6 +29,13 @@ class NFButtonEventEmitter : public ViewEventEmitter {
     };
   void onClicked(OnClicked value) const;
 };
+class NFCam2CamEventEmitter : public ViewEventEmitter {
+ public:
+  using ViewEventEmitter::ViewEventEmitter;
+
+  
+  
+};
 class NFManifestPlayerEventEmitter : public ViewEventEmitter {
  public:
   using ViewEventEmitter::ViewEventEmitter;

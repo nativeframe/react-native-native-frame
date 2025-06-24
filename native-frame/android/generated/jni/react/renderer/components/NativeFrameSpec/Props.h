@@ -34,6 +34,16 @@ class NFButtonProps final : public ViewProps {
   std::string text{};
 };
 
+class NFCam2CamProps final : public ViewProps {
+ public:
+  NFCam2CamProps() = default;
+  NFCam2CamProps(const PropsParserContext& context, const NFCam2CamProps &sourceProps, const RawProps &rawProps);
+
+#pragma mark - Props
+
+  std::string uri{};
+};
+
 class NFManifestPlayerProps final : public ViewProps {
  public:
   NFManifestPlayerProps() = default;

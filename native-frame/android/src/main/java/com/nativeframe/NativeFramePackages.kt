@@ -18,7 +18,8 @@ object NativeFramePackages {
     NFButtonPackage(),
     NFVideoPlayerPackage(),
     NFManifestPlayerPackage(),
-    NFBroadcasterPackage()
+    NFBroadcasterPackage(),
+    NFCam2CamPackage()
   )
 
   const val PERMISSION_REQUEST_CODE = 120

@@ -18,6 +18,7 @@ namespace facebook::react {
 
 using NFBroadcasterComponentDescriptor = ConcreteComponentDescriptor<NFBroadcasterShadowNode>;
 using NFButtonComponentDescriptor = ConcreteComponentDescriptor<NFButtonShadowNode>;
+using NFCam2CamComponentDescriptor = ConcreteComponentDescriptor<NFCam2CamShadowNode>;
 using NFManifestPlayerComponentDescriptor = ConcreteComponentDescriptor<NFManifestPlayerShadowNode>;
 using NFVideoPlayerComponentDescriptor = ConcreteComponentDescriptor<NFVideoPlayerShadowNode>;
 

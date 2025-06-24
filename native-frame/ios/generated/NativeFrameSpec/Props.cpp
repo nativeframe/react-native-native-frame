@@ -28,6 +28,13 @@ NFButtonProps::NFButtonProps(
 
     text(convertRawProp(context, rawProps, "text", sourceProps.text, {}))
       {}
+NFCam2CamProps::NFCam2CamProps(
+    const PropsParserContext &context,
+    const NFCam2CamProps &sourceProps,
+    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
+
+    uri(convertRawProp(context, rawProps, "uri", sourceProps.uri, {}))
+      {}
 NFManifestPlayerProps::NFManifestPlayerProps(
     const PropsParserContext &context,
     const NFManifestPlayerProps &sourceProps,

@@ -2,9 +2,7 @@ package com.nativeframe
 
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
+import com.facebook.react.ReactActivity
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -23,8 +21,9 @@ class NFBroadcasterManager : SimpleViewManager<NFBroadcaster>(),
 
   override fun getName(): String = REACT_CLASS
 
-  override fun createViewInstance(context: ThemedReactContext): NFBroadcaster =
-    NFBroadcaster(context)
+  override fun createViewInstance(context: ThemedReactContext): NFBroadcaster {
+    return NFBroadcaster(context)
+  }
 
   companion object {
     const val REACT_CLASS = "NFBroadcaster"
@@ -33,28 +32,6 @@ class NFBroadcasterManager : SimpleViewManager<NFBroadcaster>(),
   @ReactProp(name = "uri")
   override fun setUri(view: NFBroadcaster?, value: String?) {
     value?.let { view?.setUri(it) }
-    Handler(Looper.getMainLooper()).postDelayed(
-      {
-        view?.camStart(view.context, MyLifecycleOwner())
-      }, 1000
-    )
-  }
 
-  class MyLifecycleOwner() : LifecycleOwner {
-    private val mLifecycleRegistry: LifecycleRegistry by lazy { LifecycleRegistry(this) }
-
-    init {
-      mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
-    }
-
-    fun stop() {
-      mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
-    }
-
-    fun start() {
-      mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
-    }
-
-    override fun getLifecycle(): Lifecycle = mLifecycleRegistry
   }
 }

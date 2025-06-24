@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol RCTNFCam2CamViewProtocol <NSObject>
+
+@end
+
 @protocol RCTNFManifestPlayerViewProtocol <NSObject>
 
 @end

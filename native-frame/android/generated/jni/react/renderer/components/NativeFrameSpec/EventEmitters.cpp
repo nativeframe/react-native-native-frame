@@ -23,6 +23,7 @@ void NFButtonEventEmitter::onClicked(OnClicked $event) const {
 }
 
 
+
 void NFManifestPlayerEventEmitter::onClicked(OnClicked $event) const {
   dispatchEvent("clicked", [](jsi::Runtime &runtime) {
     auto $payload = jsi::Object(runtime);

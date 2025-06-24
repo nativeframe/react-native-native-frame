@@ -1,33 +1,23 @@
 package com.nativeframe
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.media3.common.MediaItem
-import androidx.media3.exoplayer.ExoPlayer
-import com.google.common.util.concurrent.ListenableFuture
-import com.nativeframe.databinding.NfBroadcasterBinding
-import java.util.concurrent.Executors
+import androidx.core.view.allViews
+import androidx.fragment.app.FragmentManager
+import com.facebook.react.ReactActivity
+import com.facebook.react.bridge.ReactContext
+import com.nativeframe.databinding.NfFragmentContainerBinding
 
 class NFBroadcaster : LinearLayoutCompat {
-  private var binding: NfBroadcasterBinding? = null
-
-  private lateinit var cameraSelector: CameraSelector
-  private lateinit var preview: Preview
-
-  private var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>? = null
-
+  protected var binding: NfFragmentContainerBinding? = null
+  protected var reactContext: ReactContext? = null
+  protected var fragmentManager: FragmentManager? = null
 
   constructor(context: Context) : super(context) {
     setup(context)
@@ -46,44 +36,48 @@ class NFBroadcaster : LinearLayoutCompat {
   }
 
   private fun setup(context: Context) {
+    (context as? ReactContext)?.let {
+      reactContext = it
+    }
+
     layoutParams = ViewGroup.LayoutParams(
       ViewGroup.LayoutParams.WRAP_CONTENT,
       ViewGroup.LayoutParams.WRAP_CONTENT
     )
-    binding = NfBroadcasterBinding.inflate(LayoutInflater.from(context))
-    addView(binding?.root)
+    binding = NfFragmentContainerBinding.inflate(LayoutInflater.from(context))
 
-    cameraSelector = CameraSelector.Builder()
-      .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
-      .build()
-    preview = Preview.Builder().build()
-    preview.surfaceProvider = binding?.cameraPreview?.surfaceProvider
+    addView(binding?.root)
+    Log.i("views: ", allViews.map { it.id }.joinToString())
+    Log.i("views 2: ", binding?.root?.allViews?.map { it.id }?.joinToString() ?: "n/a")
+    Log.i("views 3: ", binding?.container?.id?.toString() ?: "n/a")
+    Log.i("views 4a: ", R.id.container.toString())
+
+    showFragmentWithReactContext()
+  }
+
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+
+    Log.i("views 4a: onAttachedToWindow", R.id.container.toString())
   }
 
   fun setUri(uri: String) {
   }
 
-   fun camStart(context: Context, lifecycle: LifecycleOwner) {
-    //bindPreview()
-    if (cameraProviderFuture != null)
-      return
-
-     cameraProviderFuture =
-       ProcessCameraProvider.getInstance(context.applicationContext)
-     cameraProviderFuture?.addListener({
-       Log.e("00039303", "got came")
-       bindPreview(cameraProviderFuture!!.get(), lifecycle)
-     }, ContextCompat.getMainExecutor(context.applicationContext))
+  fun showFragmentWithReactContext() {
+    (reactContext?.currentActivity as? ReactActivity)?.supportFragmentManager?.let {
+      showFragment(it)
+    }
   }
 
-  private  fun camStop() {
-//    cameraProviderFuture?.get()?.unbindAll()
-//    cameraProviderFuture = null
-  }
-
-  private fun bindPreview(cameraProvider: ProcessCameraProvider, lifecycle: LifecycleOwner) {
-    cameraSelector.let {
-      cameraProvider.bindToLifecycle(lifecycle, it, preview)
+  fun showFragment(fragmentManager: FragmentManager) {
+//    with((reactContext!!.currentActivity!! as ReactActivity).supportFragmentManager.beginTransaction()) {
+//      replace(binding!!.container.id, NFBroadcasterFragment())
+//      commit()
+//    }
+    with(fragmentManager.beginTransaction()) {
+      replace(binding!!.container.id, NFBroadcasterFragment())
+      commit()
     }
   }
 }

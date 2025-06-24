@@ -14,6 +14,7 @@ namespace facebook::react {
 
 extern const char NFBroadcasterComponentName[] = "NFBroadcaster";
 extern const char NFButtonComponentName[] = "NFButton";
+extern const char NFCam2CamComponentName[] = "NFCam2Cam";
 extern const char NFManifestPlayerComponentName[] = "NFManifestPlayer";
 extern const char NFVideoPlayerComponentName[] = "NFVideoPlayer";
 

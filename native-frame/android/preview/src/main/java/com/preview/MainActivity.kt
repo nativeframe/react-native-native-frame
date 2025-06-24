@@ -1,26 +1,19 @@
 package com.preview
 
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
-import com.google.common.util.concurrent.ListenableFuture
-import com.nativeframe.NativeFramePackages
-import com.nativeframe.databinding.NfBroadcasterBinding
+import com.nativeframe.NFBroadcaster
+import com.nativeframe.NFBroadcasterFragment
 import com.nativeframe.databinding.NfManifestPlayerBinding
 import com.preview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
-  private lateinit var cameraSelector: CameraSelector
-  private lateinit var preview: Preview
-
-  private var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -31,64 +24,19 @@ class MainActivity : AppCompatActivity() {
     binding.views.addView(NfManifestPlayerBinding.inflate(LayoutInflater.from(this)).root)
 
     binding.views.addView(TextView(this).apply { text = "Encoder" })
-    val b = NfBroadcasterBinding.inflate(LayoutInflater.from(this))
-    binding.views.addView(b.root)
+    val b = NFBroadcaster(this)
+    binding.views.addView(b)
+    Handler(Looper.getMainLooper()).postDelayed({
+      b.showFragment(supportFragmentManager)
+    }, 1000)
+//    with(supportFragmentManager.beginTransaction()) {
+//      replace(R.id.broadcaster, NFBroadcasterFragment())
+//      commit()
+//    }
 
-    cameraSelector = CameraSelector.Builder()
-      .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
-      .build()
-    preview = Preview.Builder().build()
-    preview.surfaceProvider = b.cameraPreview.surfaceProvider
-  }
-
-  override fun onResume() {
-    super.onResume()
-
-    loadCam()
-  }
-
-  override fun onPause() {
-    super.onPause()
-
-    unloadCam()
-  }
-
-  override fun onRequestPermissionsResult(
-    requestCode: Int,
-    permissions: Array<out String>,
-    grantResults: IntArray
-  ) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-    if (requestCode == NativeFramePackages.PERMISSION_REQUEST_CODE && grantResults.isNotEmpty() &&
-      grantResults[0] == PackageManager.PERMISSION_GRANTED
-    ) {
-      loadCam()
+    binding.cam2cam.setOnClickListener {
+      startActivity(Intent(this@MainActivity, Cam2CamActivity::class.java))
     }
-  }
-
-  private fun unloadCam() {
-    cameraProviderFuture?.get()?.unbindAll()
-    cameraProviderFuture = null
-  }
-
-  private fun loadCam() {
-    if (!NativeFramePackages.checkAppPermissions(this))
-      return
-
-    if (cameraProviderFuture != null)
-      return
-
-    cameraProviderFuture =
-      ProcessCameraProvider.getInstance(applicationContext)
-    cameraProviderFuture?.addListener(
-      {
-        cameraSelector.let {
-          cameraProviderFuture?.get()?.bindToLifecycle(this, it, preview)
-        }
-      },
-      ContextCompat.getMainExecutor(applicationContext)
-    )
   }
 
   //region permissions with launcher

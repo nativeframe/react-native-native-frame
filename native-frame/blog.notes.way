@@ -1,0 +1,4 @@
+blog post looks solid, great work! a few small notes:
+"A new version of Native Frame is now available for React Native" could be more specific -- since NF is the whole platform, a new version of the NF mobile SDK?
+"If you're new to Native Frame, Native Frame is video streaming platform that allows you pay-as-you-go or seamlessly transition to enterprise grade private cloud." it would probably be good to run this/the whole post by Kate to see if she wants to add any brand-specific marketing notes here
+"But now, React Native is properly distributed to repositories with every release." I'm a little unclear what this means in practice but this may make more sense to readers familiar with RN
