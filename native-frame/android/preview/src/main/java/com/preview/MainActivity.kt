@@ -2,18 +2,17 @@ package com.preview
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.nativeframe.NFBroadcaster
-import com.nativeframe.NFBroadcasterFragment
+import com.nativeframe.NFBroadcasterController
+import com.nativeframe.databinding.NfBroadcasterFragmentBinding
 import com.nativeframe.databinding.NfManifestPlayerBinding
 import com.preview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
+private lateinit var controllerBroadcast: NFBroadcasterController
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -24,19 +23,26 @@ class MainActivity : AppCompatActivity() {
     binding.views.addView(NfManifestPlayerBinding.inflate(LayoutInflater.from(this)).root)
 
     binding.views.addView(TextView(this).apply { text = "Encoder" })
-    val b = NFBroadcaster(this)
-    binding.views.addView(b)
-    Handler(Looper.getMainLooper()).postDelayed({
-      b.showFragment(supportFragmentManager)
-    }, 1000)
-//    with(supportFragmentManager.beginTransaction()) {
-//      replace(R.id.broadcaster, NFBroadcasterFragment())
-//      commit()
-//    }
+    val b = NfBroadcasterFragmentBinding.inflate(layoutInflater)
+    controllerBroadcast = NFBroadcasterController(this, b)
+    binding.views.addView(b.root)
 
     binding.cam2cam.setOnClickListener {
       startActivity(Intent(this@MainActivity, Cam2CamActivity::class.java))
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+
+    controllerBroadcast.initCam()
+    controllerBroadcast.loadCam(this, this)
+  }
+
+  override fun onPause() {
+    super.onPause()
+
+    controllerBroadcast.unloadCam()
   }
 
   //region permissions with launcher

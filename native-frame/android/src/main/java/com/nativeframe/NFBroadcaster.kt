@@ -1,83 +1,50 @@
 package com.nativeframe
 
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.view.allViews
-import androidx.fragment.app.FragmentManager
 import com.facebook.react.ReactActivity
-import com.facebook.react.bridge.ReactContext
-import com.nativeframe.databinding.NfFragmentContainerBinding
+import com.nativeframe.databinding.NfBroadcasterFragmentBinding
 
-class NFBroadcaster : LinearLayoutCompat {
-  protected var binding: NfFragmentContainerBinding? = null
-  protected var reactContext: ReactContext? = null
-  protected var fragmentManager: FragmentManager? = null
-
-  constructor(context: Context) : super(context) {
-    setup(context)
-  }
-
-  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-    setup(context)
-  }
-
+class NFBroadcaster : NFLinearLayoutView<NfBroadcasterFragmentBinding, NFBroadcasterController> {
+  constructor(context: Context) : super(context)
+  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
   constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
     context,
     attrs,
     defStyleAttr
-  ) {
-    setup(context)
-  }
+  )
 
-  private fun setup(context: Context) {
-    (context as? ReactContext)?.let {
-      reactContext = it
-    }
+  override fun onSetup(view: NfBroadcasterFragmentBinding) {
+    super.onSetup(view)
 
-    layoutParams = ViewGroup.LayoutParams(
-      ViewGroup.LayoutParams.WRAP_CONTENT,
-      ViewGroup.LayoutParams.WRAP_CONTENT
-    )
-    binding = NfFragmentContainerBinding.inflate(LayoutInflater.from(context))
+    controller = NFBroadcasterController(context, view)
+    controller?.initCam()
 
-    addView(binding?.root)
-    Log.i("views: ", allViews.map { it.id }.joinToString())
-    Log.i("views 2: ", binding?.root?.allViews?.map { it.id }?.joinToString() ?: "n/a")
-    Log.i("views 3: ", binding?.container?.id?.toString() ?: "n/a")
-    Log.i("views 4a: ", R.id.container.toString())
-
-    showFragmentWithReactContext()
-  }
-
-  override fun onAttachedToWindow() {
-    super.onAttachedToWindow()
-
-    Log.i("views 4a: onAttachedToWindow", R.id.container.toString())
+    addView(view.root)
   }
 
   fun setUri(uri: String) {
   }
 
-  fun showFragmentWithReactContext() {
-    (reactContext?.currentActivity as? ReactActivity)?.supportFragmentManager?.let {
-      showFragment(it)
+  override fun inflateBinding() = NfBroadcasterFragmentBinding.inflate(LayoutInflater.from(context))
+
+  override fun onShown() {
+    super.onShown()
+
+    reactContext?.runOnUiQueueThread {
+      controller?.loadCam(
+        reactContext!!.currentActivity!!,
+        (reactContext!!.currentActivity!! as ReactActivity)
+      )
     }
   }
 
-  fun showFragment(fragmentManager: FragmentManager) {
-//    with((reactContext!!.currentActivity!! as ReactActivity).supportFragmentManager.beginTransaction()) {
-//      replace(binding!!.container.id, NFBroadcasterFragment())
-//      commit()
-//    }
-    with(fragmentManager.beginTransaction()) {
-      replace(binding!!.container.id, NFBroadcasterFragment())
-      commit()
+  override fun onHide() {
+    super.onHide()
+
+    reactContext?.runOnUiQueueThread {
+      controller?.unloadCam()
     }
   }
 }

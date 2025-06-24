@@ -6,7 +6,7 @@
 
   <androidx.fragment.app.FragmentContainerView
     android:id="@+id/container"
-    android:name="com.nativeframe.NFCam2CamFragment"
+    android:name="com.nativeframe.NFCam2CamController"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
