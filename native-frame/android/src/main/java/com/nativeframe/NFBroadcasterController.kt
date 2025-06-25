@@ -7,7 +7,7 @@ import com.nativeframe.databinding.NfBroadcasterFragmentBinding
 class NFBroadcasterController(
   context: Context,
   private val binding: NfBroadcasterFragmentBinding
-) : NFController<NfBroadcasterFragmentBinding>(context, binding) {
+) : NFCamController(context) {
 
   init {
     binding.goLive.setOnClickListener {

@@ -12,9 +12,8 @@ import com.facebook.react.bridge.ReactContext
 import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
 import com.google.common.util.concurrent.ListenableFuture
 
-abstract class NFController<T>(
-  private val context: Context,
-  private val binding: T
+abstract class NFCamController(
+  private val context: Context
 ) {
   private var cameraSelector: CameraSelector? = null
   private var preview: Preview? = null
@@ -31,6 +30,9 @@ abstract class NFController<T>(
   protected abstract fun getSurfaceProvider(): SurfaceProvider?
 
   fun initCam() {
+    if (preview != null)
+      return
+
     cameraSelector = CameraSelector.Builder()
       .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
       .build()
