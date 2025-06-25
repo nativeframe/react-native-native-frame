@@ -3,7 +3,7 @@ package com.preview
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nativeframe.NFCam2CamController
-import com.nativeframe.databinding.NfCam2camFragmentBinding
+import com.nativeframe.databinding.NfCam2camBinding
 import com.preview.databinding.ActivityCam2camBinding
 
 class Cam2CamActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class Cam2CamActivity : AppCompatActivity() {
     binding = ActivityCam2camBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    val v = NfCam2camFragmentBinding.inflate(layoutInflater)
+    val v = NfCam2camBinding.inflate(layoutInflater)
 
     binding.root.addView(v.root)
     controller = NFCam2CamController(this, v)

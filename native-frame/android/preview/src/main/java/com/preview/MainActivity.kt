@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.nativeframe.NFBroadcasterController
-import com.nativeframe.databinding.NfBroadcasterFragmentBinding
+import com.nativeframe.databinding.NfBroadcasterBinding
 import com.nativeframe.databinding.NfManifestPlayerBinding
 import com.preview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
-private lateinit var controllerBroadcast: NFBroadcasterController
+  private lateinit var controllerBroadcast: NFBroadcasterController
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ private lateinit var controllerBroadcast: NFBroadcasterController
     binding.views.addView(NfManifestPlayerBinding.inflate(LayoutInflater.from(this)).root)
 
     binding.views.addView(TextView(this).apply { text = "Encoder" })
-    val b = NfBroadcasterFragmentBinding.inflate(layoutInflater)
+    val b = NfBroadcasterBinding.inflate(layoutInflater)
     controllerBroadcast = NFBroadcasterController(this, b)
     binding.views.addView(b.root)
 

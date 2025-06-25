@@ -2,11 +2,11 @@ package com.nativeframe
 
 import android.content.Context
 import com.facebook.react.bridge.Arguments
-import com.nativeframe.databinding.NfBroadcasterFragmentBinding
+import com.nativeframe.databinding.NfBroadcasterBinding
 
 class NFBroadcasterController(
   context: Context,
-  private val binding: NfBroadcasterFragmentBinding
+  private val binding: NfBroadcasterBinding
 ) : NFCamController(context) {
 
   init {
