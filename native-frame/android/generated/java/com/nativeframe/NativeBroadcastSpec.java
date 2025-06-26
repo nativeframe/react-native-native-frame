@@ -18,12 +18,11 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.turbomodule.core.interfaces.TurboModule;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public abstract class NativeLocalStorageSpec extends ReactContextBaseJavaModule implements TurboModule {
-  public static final String NAME = "NativeLocalStorage";
+public abstract class NativeBroadcastSpec extends ReactContextBaseJavaModule implements TurboModule {
+  public static final String NAME = "NativeBroadcast";
 
-  public NativeLocalStorageSpec(ReactApplicationContext reactContext) {
+  public NativeBroadcastSpec(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
@@ -34,17 +33,5 @@ public abstract class NativeLocalStorageSpec extends ReactContextBaseJavaModule 
 
   @ReactMethod
   @DoNotStrip
-  public abstract void setItem(String key, String value);
-
-  @ReactMethod(isBlockingSynchronousMethod = true)
-  @DoNotStrip
-  public abstract @Nullable String getItem(String key);
-
-  @ReactMethod
-  @DoNotStrip
-  public abstract void removeItem(String key);
-
-  @ReactMethod
-  @DoNotStrip
-  public abstract void clear();
+  public abstract void webRTC(String url);
 }

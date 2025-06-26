@@ -11,7 +11,7 @@ object NativeFramePackages {
   val packages = listOf(
     //modules
     NFUtilPackage(),
-    NFLocalStoragePackage(),
+    NFBroadcastPackage(),
     EventsPackage(),
 
     //components

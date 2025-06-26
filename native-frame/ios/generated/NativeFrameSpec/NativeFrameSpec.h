@@ -31,17 +31,13 @@
 #import <vector>
 
 
-@protocol NativeLocalStorageSpec <RCTBridgeModule, RCTTurboModule>
+@protocol NativeBroadcastSpec <RCTBridgeModule, RCTTurboModule>
 
-- (void)setItem:(NSString *)key
-          value:(NSString *)value;
-- (NSString * _Nullable)getItem:(NSString *)key;
-- (void)removeItem:(NSString *)key;
-- (void)clear;
+- (void)webRTC:(NSString *)url;
 
 @end
 
-@interface NativeLocalStorageSpecBase : NSObject {
+@interface NativeBroadcastSpecBase : NSObject {
 @protected
 facebook::react::EventEmitterCallback _eventEmitterCallback;
 }
@@ -52,11 +48,11 @@ facebook::react::EventEmitterCallback _eventEmitterCallback;
 
 namespace facebook::react {
   /**
-   * ObjC++ class for module 'NativeLocalStorage'
+   * ObjC++ class for module 'NativeBroadcast'
    */
-  class JSI_EXPORT NativeLocalStorageSpecJSI : public ObjCTurboModule {
+  class JSI_EXPORT NativeBroadcastSpecJSI : public ObjCTurboModule {
   public:
-    NativeLocalStorageSpecJSI(const ObjCTurboModule::InitParams &params);
+    NativeBroadcastSpecJSI(const ObjCTurboModule::InitParams &params);
   };
 } // namespace facebook::react
 

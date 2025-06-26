@@ -2,6 +2,8 @@ package com.nativeframe
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.core.Preview.SurfaceProvider
@@ -48,8 +50,13 @@ abstract class NFCamController(
   }
 
   fun loadCam(activity: Activity, lifecycleOwner: LifecycleOwner) {
-    if (!NativeFramePackages.checkAppPermissions(activity))
+    if (!NativeFramePackages.checkAppPermissions(activity)) {
+      android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+        loadCam(activity, lifecycleOwner)
+      }, 2000)
       return
+    }
+
 
     if (cameraProviderFuture != null)
       return

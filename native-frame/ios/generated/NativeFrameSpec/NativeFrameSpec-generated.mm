@@ -14,7 +14,7 @@
 #import "NativeFrameSpec.h"
 
 
-@implementation NativeLocalStorageSpecBase
+@implementation NativeBroadcastSpecBase
 
 
 - (void)setEventEmitterCallback:(EventEmitterCallbackWrapper *)eventEmitterCallbackWrapper
@@ -26,35 +26,14 @@
 
 namespace facebook::react {
   
-    static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_setItem(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "setItem", @selector(setItem:value:), args, count);
+    static facebook::jsi::Value __hostFunction_NativeBroadcastSpecJSI_webRTC(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "webRTC", @selector(webRTC:), args, count);
     }
 
-    static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_getItem(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, StringKind, "getItem", @selector(getItem:), args, count);
-    }
-
-    static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_removeItem(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "removeItem", @selector(removeItem:), args, count);
-    }
-
-    static facebook::jsi::Value __hostFunction_NativeLocalStorageSpecJSI_clear(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "clear", @selector(clear), args, count);
-    }
-
-  NativeLocalStorageSpecJSI::NativeLocalStorageSpecJSI(const ObjCTurboModule::InitParams &params)
+  NativeBroadcastSpecJSI::NativeBroadcastSpecJSI(const ObjCTurboModule::InitParams &params)
     : ObjCTurboModule(params) {
       
-        methodMap_["setItem"] = MethodMetadata {2, __hostFunction_NativeLocalStorageSpecJSI_setItem};
-        
-        
-        methodMap_["getItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageSpecJSI_getItem};
-        
-        
-        methodMap_["removeItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageSpecJSI_removeItem};
-        
-        
-        methodMap_["clear"] = MethodMetadata {0, __hostFunction_NativeLocalStorageSpecJSI_clear};
+        methodMap_["webRTC"] = MethodMetadata {1, __hostFunction_NativeBroadcastSpecJSI_webRTC};
         
   }
 } // namespace facebook::react

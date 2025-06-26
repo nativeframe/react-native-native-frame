@@ -15,76 +15,49 @@
 namespace facebook::react {
 
 
-  class JSI_EXPORT NativeLocalStorageCxxSpecJSI : public TurboModule {
+  class JSI_EXPORT NativeBroadcastCxxSpecJSI : public TurboModule {
 protected:
-  NativeLocalStorageCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
+  NativeBroadcastCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
 
 public:
-  virtual void setItem(jsi::Runtime &rt, jsi::String key, jsi::String value) = 0;
-  virtual std::optional<jsi::String> getItem(jsi::Runtime &rt, jsi::String key) = 0;
-  virtual void removeItem(jsi::Runtime &rt, jsi::String key) = 0;
-  virtual void clear(jsi::Runtime &rt) = 0;
+  virtual void webRTC(jsi::Runtime &rt, jsi::String url) = 0;
 
 };
 
 template <typename T>
-class JSI_EXPORT NativeLocalStorageCxxSpec : public TurboModule {
+class JSI_EXPORT NativeBroadcastCxxSpec : public TurboModule {
 public:
   jsi::Value get(jsi::Runtime &rt, const jsi::PropNameID &propName) override {
     return delegate_.get(rt, propName);
   }
 
-  static constexpr std::string_view kModuleName = "NativeLocalStorage";
+  static constexpr std::string_view kModuleName = "NativeBroadcast";
 
 protected:
-  NativeLocalStorageCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
-    : TurboModule(std::string{NativeLocalStorageCxxSpec::kModuleName}, jsInvoker),
+  NativeBroadcastCxxSpec(std::shared_ptr<CallInvoker> jsInvoker)
+    : TurboModule(std::string{NativeBroadcastCxxSpec::kModuleName}, jsInvoker),
       delegate_(reinterpret_cast<T*>(this), jsInvoker) {}
 
 
 private:
-  class Delegate : public NativeLocalStorageCxxSpecJSI {
+  class Delegate : public NativeBroadcastCxxSpecJSI {
   public:
     Delegate(T *instance, std::shared_ptr<CallInvoker> jsInvoker) :
-      NativeLocalStorageCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
+      NativeBroadcastCxxSpecJSI(std::move(jsInvoker)), instance_(instance) {
 
     }
 
-    void setItem(jsi::Runtime &rt, jsi::String key, jsi::String value) override {
+    void webRTC(jsi::Runtime &rt, jsi::String url) override {
       static_assert(
-          bridging::getParameterCount(&T::setItem) == 3,
-          "Expected setItem(...) to have 3 parameters");
+          bridging::getParameterCount(&T::webRTC) == 2,
+          "Expected webRTC(...) to have 2 parameters");
 
       return bridging::callFromJs<void>(
-          rt, &T::setItem, jsInvoker_, instance_, std::move(key), std::move(value));
-    }
-    std::optional<jsi::String> getItem(jsi::Runtime &rt, jsi::String key) override {
-      static_assert(
-          bridging::getParameterCount(&T::getItem) == 2,
-          "Expected getItem(...) to have 2 parameters");
-
-      return bridging::callFromJs<std::optional<jsi::String>>(
-          rt, &T::getItem, jsInvoker_, instance_, std::move(key));
-    }
-    void removeItem(jsi::Runtime &rt, jsi::String key) override {
-      static_assert(
-          bridging::getParameterCount(&T::removeItem) == 2,
-          "Expected removeItem(...) to have 2 parameters");
-
-      return bridging::callFromJs<void>(
-          rt, &T::removeItem, jsInvoker_, instance_, std::move(key));
-    }
-    void clear(jsi::Runtime &rt) override {
-      static_assert(
-          bridging::getParameterCount(&T::clear) == 1,
-          "Expected clear(...) to have 1 parameters");
-
-      return bridging::callFromJs<void>(
-          rt, &T::clear, jsInvoker_, instance_);
+          rt, &T::webRTC, jsInvoker_, instance_, std::move(url));
     }
 
   private:
-    friend class NativeLocalStorageCxxSpec;
+    friend class NativeBroadcastCxxSpec;
     T *instance_;
   };
 

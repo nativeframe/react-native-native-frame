@@ -4,6 +4,7 @@ import NFManifestPlayerNativeComponent from './specs/NFManifestPlayerNativeCompo
 import NFBroadcasterNativeComponent from './specs/NFBroadcasterNativeComponent';
 import NFCam2CamNativeComponent from './specs/NFCam2CamNativeComponent';
 import { NativeFrame } from './lib/commonjs/index';
+import NativeBroadcast from './specs/NativeBroadcast';
 
 export {
   NFButtonNativeComponent as NFButton,
@@ -11,5 +12,6 @@ export {
   NFManifestPlayerNativeComponent as NFManifestPlayer,
   NFBroadcasterNativeComponent as NFBroadcaster,
   NFCam2CamNativeComponent as NFCam2Cam,
+  NativeBroadcast as NFBroadcast,
   NativeFrame,
 };

@@ -11,41 +11,17 @@
 
 namespace facebook::react {
 
-static jsi::Value __hostFunction_NativeLocalStorageCxxSpecJSI_setItem(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  static_cast<NativeLocalStorageCxxSpecJSI *>(&turboModule)->setItem(
-    rt,
-    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt),
-    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asString(rt)
-  );
-  return jsi::Value::undefined();
-}
-static jsi::Value __hostFunction_NativeLocalStorageCxxSpecJSI_getItem(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  auto result = static_cast<NativeLocalStorageCxxSpecJSI *>(&turboModule)->getItem(
+static jsi::Value __hostFunction_NativeBroadcastCxxSpecJSI_webRTC(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
+  static_cast<NativeBroadcastCxxSpecJSI *>(&turboModule)->webRTC(
     rt,
     count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
-  );
-  return result ? jsi::Value(std::move(*result)) : jsi::Value::null();
-}
-static jsi::Value __hostFunction_NativeLocalStorageCxxSpecJSI_removeItem(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  static_cast<NativeLocalStorageCxxSpecJSI *>(&turboModule)->removeItem(
-    rt,
-    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
-  );
-  return jsi::Value::undefined();
-}
-static jsi::Value __hostFunction_NativeLocalStorageCxxSpecJSI_clear(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  static_cast<NativeLocalStorageCxxSpecJSI *>(&turboModule)->clear(
-    rt
   );
   return jsi::Value::undefined();
 }
 
-NativeLocalStorageCxxSpecJSI::NativeLocalStorageCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
-  : TurboModule("NativeLocalStorage", jsInvoker) {
-  methodMap_["setItem"] = MethodMetadata {2, __hostFunction_NativeLocalStorageCxxSpecJSI_setItem};
-  methodMap_["getItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageCxxSpecJSI_getItem};
-  methodMap_["removeItem"] = MethodMetadata {1, __hostFunction_NativeLocalStorageCxxSpecJSI_removeItem};
-  methodMap_["clear"] = MethodMetadata {0, __hostFunction_NativeLocalStorageCxxSpecJSI_clear};
+NativeBroadcastCxxSpecJSI::NativeBroadcastCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
+  : TurboModule("NativeBroadcast", jsInvoker) {
+  methodMap_["webRTC"] = MethodMetadata {1, __hostFunction_NativeBroadcastCxxSpecJSI_webRTC};
 }
 static jsi::Value __hostFunction_NativeUtilCxxSpecJSI_platformDetailsString(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeUtilCxxSpecJSI *>(&turboModule)->platformDetailsString(

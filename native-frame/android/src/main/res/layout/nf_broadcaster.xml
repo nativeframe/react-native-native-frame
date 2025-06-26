@@ -21,27 +21,27 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="12dp"
-    android:text="Live"
+    android:text="Start Broadcast"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/camera_preview" />
 
   <Button
-    android:id="@+id/disableCam"
+    android:id="@+id/toggleCam"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Disable Cam"
-    app:layout_constraintEnd_toStartOf="@id/disableMic"
+    android:text="Toggle Cam"
+    app:layout_constraintEnd_toStartOf="@id/toggleMic"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/goLive" />
 
   <Button
-    android:id="@+id/disableMic"
+    android:id="@+id/toggleMic"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Disable Mic"
+    android:text="Toggle Mic"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@id/disableCam"
-    app:layout_constraintTop_toTopOf="@id/disableCam" />
+    app:layout_constraintStart_toEndOf="@id/toggleCam"
+    app:layout_constraintTop_toTopOf="@id/toggleCam" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

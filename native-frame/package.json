@@ -1,6 +1,6 @@
 {
   "name": "@nativeframe/react-native-native-frame",
-  "version": "0.9.147",
+  "version": "0.9.155",
   "description": "React native package for streaming",
   "source": "./src/app.tsx",
   "main": "./index.js",
@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@video/video-client-core": "13.2.0",
+    "@videomobile/react-native-webrtc": "^124.0.4",
     "react-native-gradle-plugin": "^0.71.19"
   },
   "devDependencies": {

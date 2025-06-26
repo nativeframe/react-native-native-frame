@@ -17,11 +17,11 @@
 namespace facebook::react {
 
 /**
- * JNI C++ class for module 'NativeLocalStorage'
+ * JNI C++ class for module 'NativeBroadcast'
  */
-class JSI_EXPORT NativeLocalStorageSpecJSI : public JavaTurboModule {
+class JSI_EXPORT NativeBroadcastSpecJSI : public JavaTurboModule {
 public:
-  NativeLocalStorageSpecJSI(const JavaTurboModule::InitParams &params);
+  NativeBroadcastSpecJSI(const JavaTurboModule::InitParams &params);
 };
 
 /**

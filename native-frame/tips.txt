@@ -1,4 +1,4 @@
-best way to start react native apps:
+- best way to start react native apps:
     npx @react-native-community/cli init X
          npx @react-native-community/cli@latest init WebViewDemo --install-pods false
     npx react-native run-android
@@ -7,13 +7,16 @@ best way to start react native apps:
     npm install
     npx react-native run-android
 
-clean up published versions with: npm unpublish @nativeframe/react-native-native-frame@0.9.31
+- clean up published versions with: npm unpublish @nativeframe/react-native-native-frame@0.9.31
 
-expo is for fast mvp projects, using expo api
+- expo is for fast mvp projects, using expo api
 
 
 dev
-bug - we have to copy cpp files 
+
+run to generate module code: ./gradlew generateCodegenArtifactsFromSchema
+
+bug - we may have to copy cpp files 
 ComponentDescriptors.cpp 
 ComponentDescriptors.h 
 EventEmitters.cpp 

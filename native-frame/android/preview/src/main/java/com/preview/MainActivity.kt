@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     binding.views.addView(TextView(this).apply { text = "Encoder" })
     val b = NfBroadcasterBinding.inflate(layoutInflater)
-    controllerBroadcast = NFBroadcasterController(this, b)
+    controllerBroadcast = NFBroadcasterController(this, b, onToggleCam = {}, onToggleMic = {})
     binding.views.addView(b.root)
 
     binding.cam2cam.setOnClickListener {
