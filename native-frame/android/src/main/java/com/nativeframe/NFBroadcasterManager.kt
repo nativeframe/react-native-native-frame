@@ -1,8 +1,5 @@
 package com.nativeframe
 
-import android.os.Handler
-import android.os.Looper
-import com.facebook.react.ReactActivity
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -21,8 +18,20 @@ class NFBroadcasterManager : SimpleViewManager<NFBroadcaster>(),
 
   override fun getName(): String = REACT_CLASS
 
+  private var view: NFBroadcaster? = null
   override fun createViewInstance(context: ThemedReactContext): NFBroadcaster {
-    return NFBroadcaster(context)
+    view = NFBroadcaster(context)
+
+    val m = context.getNativeModule(NFBroadcastModule::class.java)
+    m?.listener = object : NFBroadcastModule.BroadcastListener {
+      override fun onWebRTCSource(url: String) {
+        context.runOnUiQueueThread {
+          view?.setWebRTCStreamUrl(url)
+        }
+      }
+    }
+
+    return view!!
   }
 
   companion object {
@@ -32,6 +41,5 @@ class NFBroadcasterManager : SimpleViewManager<NFBroadcaster>(),
   @ReactProp(name = "uri")
   override fun setUri(view: NFBroadcaster?, value: String?) {
     value?.let { view?.setUri(it) }
-
   }
 }

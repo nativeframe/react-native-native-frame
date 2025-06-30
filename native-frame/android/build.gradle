@@ -30,7 +30,7 @@ def getExtOrDefault(name) {
 }
 
 def getExtOrIntegerDefault(name) {
-  return rootProject.ext.has(name) ? Integer.parseInt(rootProject.ext.get(name)) : (project.properties[name]).toInteger()
+  return rootProject.ext.has(name) ? Integer.parseInt(rootProject.ext.get(name).toString()) : (project.properties[name]).toInteger()
 }
 
 def supportsNamespace() {
@@ -53,13 +53,12 @@ android {
     }
   }
 
-  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+  compileSdk getExtOrIntegerDefault("compileSdkVersion")
 
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
     buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "true"
-
   }
 
   buildFeatures {

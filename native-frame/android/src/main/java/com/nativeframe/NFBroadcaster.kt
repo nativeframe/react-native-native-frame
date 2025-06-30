@@ -2,11 +2,17 @@ package com.nativeframe
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import androidx.core.view.children
 import com.facebook.react.ReactActivity
 import com.nativeframe.databinding.NfBroadcasterBinding
+import com.oney.WebRTCModule.WebRTCView
 
 class NFBroadcaster : NFLinearLayoutView<NfBroadcasterBinding, NFBroadcasterController> {
+  private val videoViewManager = com.oney.WebRTCModule.RTCVideoViewManager()
+
   constructor(context: Context) : super(context)
   constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
   constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -15,17 +21,28 @@ class NFBroadcaster : NFLinearLayoutView<NfBroadcasterBinding, NFBroadcasterCont
     defStyleAttr
   )
 
-  companion object {
-    var DEL_STREAM_URL = ""
+  private fun showWebRTCView(show: Boolean) {
+    for (v in binding?.preview?.children?.filter { it is WebRTCView } ?: emptySequence()) {
+      v.visibility = if (show) View.VISIBLE else View.INVISIBLE
+    }
+  }
+
+  private fun enableControls(enable: Boolean) {
+    binding?.toggleCam?.isEnabled = enable
+    binding?.toggleMic?.isEnabled = enable
   }
 
   override fun onSetup(view: NfBroadcasterBinding) {
     super.onSetup(view)
 
+    enableControls(false)
     controller = NFBroadcasterController(
       context, view,
-      onToggleCam = {
-        if (it) showCam() else noCam()
+      onBroadcast = { enabled ->
+        showWebRTCView(enabled)
+      },
+      onToggleCam = { enabled ->
+        showWebRTCView(enabled)
       },
       onToggleMic = {
 
@@ -33,42 +50,26 @@ class NFBroadcaster : NFLinearLayoutView<NfBroadcasterBinding, NFBroadcasterCont
     controller?.initCam()
 
     addView(view.root)
-
-//    Handler(Looper.getMainLooper()).postDelayed({
-//      val v = WebRTCView(context)
-//      Log.i("BILLY JOEL2 Native: using: ", DEL_STREAM_URL ?: "")
-//RTCVideoViewManager().setStreamURL(v, DEL_STREAM_URL)
-//      view.root.addView(v)
-//    }, 10000)
   }
 
-//  private fun getVideoTrackForStreamURL(streamURL: String?): VideoTrack? {
-//    var videoTrack: VideoTrack? = null
-//
-//    if (streamURL != null) {
-//      val reactContext = context as ReactContext
-//      val module
-//        : WebRTCModule? = reactContext.getNativeModule(WebRTCModule::class.java)
-//      val stream: MediaStream = module.getStreamForReactTag(streamURL)
-//
-//      if (stream != null) {
-//        val videoTracks: List<VideoTrack> = stream.videoTracks
-//
-//        if (!videoTracks.isEmpty()) {
-//          videoTrack = videoTracks[0]
-//        }
-//      }
-//
-//      if (videoTrack == null) {
-//        Log.w(
-//          com.oney.WebRTCModule.WebRTCView.TAG,
-//          "No video stream for react tag: $streamURL"
-//        )
-//      }
-//    }
-//
-//    return videoTrack
-//  }
+  fun setWebRTCStreamUrl(url: String) {
+    enableControls(true)
+
+    controller?.unloadCam()
+    controller = null
+    for (v in binding?.preview?.children?.filter { it is WebRTCView } ?: emptySequence()) {
+      binding?.preview?.removeView(v)
+    }
+
+    val v = WebRTCView(context)
+    Log.i(NFBroadcasterManager.REACT_CLASS, "new webrtc source url: $url")
+    videoViewManager.setStreamURL(v, url)
+    v.setObjectFit("cover")
+    v.setMirror(true)
+
+    binding?.cameraPreview?.visibility = View.GONE
+    binding?.preview?.addView(v)
+  }
 
   fun setUri(uri: String) {
   }
@@ -88,6 +89,9 @@ class NFBroadcaster : NFLinearLayoutView<NfBroadcasterBinding, NFBroadcasterCont
   }
 
   private fun showCam() {
+    if (controller == null)
+      return
+
     reactContext?.runOnUiQueueThread {
       controller?.initCam()
       controller?.loadCam(
@@ -98,6 +102,9 @@ class NFBroadcaster : NFLinearLayoutView<NfBroadcasterBinding, NFBroadcasterCont
   }
 
   private fun noCam() {
+    if (controller == null)
+      return
+
     reactContext?.runOnUiQueueThread {
       controller?.unloadCam()
     }
