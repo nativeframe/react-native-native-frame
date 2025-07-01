@@ -15,6 +15,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableNativeMap
 import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
 import com.nativeframe.databinding.NfManifestPlayerBinding
 import com.oney.WebRTCModule.RTCVideoViewManager
@@ -23,7 +24,6 @@ import com.oney.WebRTCModule.WebRTCView
 class NFManifestPlayer : ReactLinearLayoutCompat {
   private var binding: NfManifestPlayerBinding? = null
   private var emitter: RCTDeviceEventEmitter? = null
-  private var webRTCView: WebRTCView? = null
   private val videoViewManager = RTCVideoViewManager()
 
   constructor(context: Context) : super(context) {
@@ -64,6 +64,19 @@ class NFManifestPlayer : ReactLinearLayoutCompat {
       android.R.layout.simple_spinner_item,
       listOf("2960kbps", "1260kbps", "172kbps") //TODO load qualities
     )
+
+    binding?.drivers?.setOnCheckedChangeListener { _, i ->
+      when (i) {
+        0 or 1 -> {
+          setParams(WritableNativeMap().apply {
+            putString("hls", last.hls)
+            putString("webrtc", last.webrtc)
+          })
+        }
+
+        else -> {}
+      }
+    }
   }
 
   enum class Player { webrtc, hls }
@@ -73,16 +86,25 @@ class NFManifestPlayer : ReactLinearLayoutCompat {
       Player.webrtc -> {
         b.playerHls.visibility = View.GONE
         b.playerHls.player?.pause()
+        removeWebRtcView()
       }
 
       Player.hls -> {
-        for (v in binding?.players?.children?.filter { it is WebRTCView } ?: emptySequence()) {
-          v.visibility = View.GONE
-        }
+        removeWebRtcView()
         b.playerHls.visibility = View.VISIBLE
       }
     }
   }
+
+  private fun removeWebRtcView() {
+    for (v in binding?.players?.children?.filter { it is WebRTCView } ?: emptySequence()) {
+      binding?.players?.removeView(v)
+    }
+  }
+
+  class Params(var hls: String?, var webrtc: String?)
+
+  private val last: Params = Params(null, null)
 
   @OptIn(UnstableApi::class)
   fun setParams(params: ReadableMap) {
@@ -93,35 +115,38 @@ class NFManifestPlayer : ReactLinearLayoutCompat {
 
     Log.i(NFManifestPlayerManager.REACT_CLASS, "hls: $hls. webrtc: $webrtc")
 
-    if (!webrtc.isNullOrBlank()) {
+    val isWebRTC = !webrtc.isNullOrBlank() && b.radioWebRtc.isChecked
+    val isHls = !hls.isNullOrBlank() && b.radioHls.isChecked
+
+    if (isWebRTC) {
       show(b, Player.webrtc)
 
-      if (webRTCView == null) {
-        webRTCView = WebRTCView(context)
-        webRTCView?.setObjectFit("cover")
-      }
+      val webRTCView = WebRTCView(context)
+      webRTCView.setObjectFit("cover")
 
-      webRTCView?.let {
-        videoViewManager.setStreamURL(it, webrtc)
+      if (last.webrtc != webrtc) {
+        videoViewManager.setStreamURL(webRTCView, webrtc)
 
-        if (binding?.players?.children?.contains(it) != true) {
-          binding?.players?.addView(it)
-        }
+        binding?.players?.addView(webRTCView)
         requestLayout()
       }
 
-      return
+      last.webrtc = webrtc
     }
 
-    if (!hls.isNullOrBlank()) {
+    if (isHls) {
       show(b, Player.hls)
 
-      b.playerHls.hideController()
-      b.playerHls.player = ExoPlayer.Builder(context).build().apply {
-        setMediaItem(MediaItem.fromUri(hls))
-        prepare()
-        play()
+      if (last.hls != hls) {
+        b.playerHls.hideController()
+        b.playerHls.player = ExoPlayer.Builder(context).build().apply {
+          setMediaItem(MediaItem.fromUri(hls!!))
+          prepare()
+          play()
+        }
       }
+
+      last.hls = hls
     }
   }
 }
