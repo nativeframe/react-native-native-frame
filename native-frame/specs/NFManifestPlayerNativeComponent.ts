@@ -3,7 +3,7 @@ import type { BubblingEventHandler } from 'react-native/Libraries/Types/CodegenT
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
 export interface NativeProps extends ViewProps {
-  manifestUri?: string;
+  playerParams?: { hls: string; webrtc: string };
   onClicked?: BubblingEventHandler<{}> | null;
 }
 

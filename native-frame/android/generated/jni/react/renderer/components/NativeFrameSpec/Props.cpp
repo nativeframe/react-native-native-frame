@@ -40,7 +40,7 @@ NFManifestPlayerProps::NFManifestPlayerProps(
     const NFManifestPlayerProps &sourceProps,
     const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
 
-    manifestUri(convertRawProp(context, rawProps, "manifestUri", sourceProps.manifestUri, {}))
+    playerParams(convertRawProp(context, rawProps, "playerParams", sourceProps.playerParams, {}))
       {}
 NFVideoPlayerProps::NFVideoPlayerProps(
     const PropsParserContext &context,

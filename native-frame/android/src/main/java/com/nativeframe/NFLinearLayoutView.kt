@@ -4,10 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.LinearLayoutCompat
 import com.facebook.react.bridge.ReactContext
 
-abstract class NFLinearLayoutView<T, TController> : LinearLayoutCompat {
+abstract class NFLinearLayoutView<T, TController> : ReactLinearLayoutCompat {
   protected var binding: T? = null
   protected var reactContext: ReactContext? = null
   protected var controller: TController? = null
@@ -46,22 +45,6 @@ abstract class NFLinearLayoutView<T, TController> : LinearLayoutCompat {
       onSetup(this)
     }
   }
-
-  //#region react-native bug. see https://github.com/facebook/react-native/issues/17968#issuecomment-2065449875
-
-  override fun requestLayout() {
-    super.requestLayout()
-    post(measureAndLayout)
-  }
-
-  private val measureAndLayout = Runnable {
-    measure(
-      MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-      MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
-    )
-    layout(left, top, right, bottom)
-  }
-  //#endregion
 
   override fun onVisibilityChanged(changedView: View, visibility: Int) {
     super.onVisibilityChanged(changedView, visibility)

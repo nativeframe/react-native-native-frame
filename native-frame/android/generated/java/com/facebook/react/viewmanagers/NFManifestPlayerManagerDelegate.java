@@ -11,6 +11,7 @@ package com.facebook.react.viewmanagers;
 
 import android.view.View;
 import androidx.annotation.Nullable;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.BaseViewManagerDelegate;
 import com.facebook.react.uimanager.BaseViewManagerInterface;
 
@@ -21,8 +22,8 @@ public class NFManifestPlayerManagerDelegate<T extends View, U extends BaseViewM
   @Override
   public void setProperty(T view, String propName, @Nullable Object value) {
     switch (propName) {
-      case "manifestUri":
-        mViewManager.setManifestUri(view, value == null ? null : (String) value);
+      case "playerParams":
+        mViewManager.setPlayerParams(view, (ReadableMap) value);
         break;
       default:
         super.setProperty(view, propName, value);

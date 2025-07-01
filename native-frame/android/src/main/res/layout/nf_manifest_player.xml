@@ -11,8 +11,6 @@
     android:layout_marginTop="12dp"
     android:hint="Enter Manifest Url"
     android:lines="2"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
   <Button
@@ -23,15 +21,21 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/uri" />
 
-  <androidx.media3.ui.PlayerView
-    android:id="@+id/player"
+  <FrameLayout
+    android:id="@+id/players"
     android:layout_width="350dp"
     android:layout_height="250dp"
-    android:layout_gravity="center_horizontal"
     android:layout_marginTop="12dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/play" />
+    app:layout_constraintTop_toBottomOf="@id/play">
+
+    <androidx.media3.ui.PlayerView
+      android:id="@+id/player_hls"
+      android:layout_width="350dp"
+      android:layout_height="250dp"
+      android:layout_gravity="center_horizontal" />
+  </FrameLayout>
 
   <TextView
     android:id="@+id/labelQuality"
@@ -41,7 +45,7 @@
     android:text="Select Video Quality"
     android:visibility="invisible"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/player" />
+    app:layout_constraintTop_toBottomOf="@id/players" />
 
   <Spinner
     android:id="@+id/quality"

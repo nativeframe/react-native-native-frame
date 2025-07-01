@@ -1,5 +1,6 @@
 package com.nativeframe
 
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -25,8 +26,8 @@ class NFManifestPlayerManager : SimpleViewManager<NFManifestPlayer>(),
     const val REACT_CLASS = "NFManifestPlayer"
   }
 
-  @ReactProp(name = "manifestUri")
-  override fun setManifestUri(view: NFManifestPlayer?, value: String?) {
-    value?.let { view?.setManifestUri(it) }
+  @ReactProp(name = "playerParams")
+  override fun setPlayerParams(view: NFManifestPlayer?, value: ReadableMap?) {
+    value?.let { view?.setParams(it) }
   }
 }

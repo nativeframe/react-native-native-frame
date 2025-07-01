@@ -7,7 +7,7 @@
     npm install
     npx react-native run-android
 
-- clean up published versions with: npm unpublish @nativeframe/react-native-native-frame@0.9.31
+- clean up published versions with: npm unpublish @nativeframe/react-native-native-frame@0.9.100
 
 - expo is for fast mvp projects, using expo api
 

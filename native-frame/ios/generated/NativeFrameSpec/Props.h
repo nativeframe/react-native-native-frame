@@ -11,6 +11,7 @@
 
 #include <react/renderer/components/view/ViewProps.h>
 #include <react/renderer/core/PropsParserContext.h>
+#include <react/renderer/core/propsConversions.h>
 
 namespace facebook::react {
 
@@ -44,6 +45,27 @@ class NFCam2CamProps final : public ViewProps {
   std::string uri{};
 };
 
+struct NFManifestPlayerPlayerParamsStruct {
+  std::string hls{};
+  std::string webrtc{};
+};
+
+static inline void fromRawValue(const PropsParserContext& context, const RawValue &value, NFManifestPlayerPlayerParamsStruct &result) {
+  auto map = (std::unordered_map<std::string, RawValue>)value;
+
+  auto tmp_hls = map.find("hls");
+  if (tmp_hls != map.end()) {
+    fromRawValue(context, tmp_hls->second, result.hls);
+  }
+  auto tmp_webrtc = map.find("webrtc");
+  if (tmp_webrtc != map.end()) {
+    fromRawValue(context, tmp_webrtc->second, result.webrtc);
+  }
+}
+
+static inline std::string toString(const NFManifestPlayerPlayerParamsStruct &value) {
+  return "[Object NFManifestPlayerPlayerParamsStruct]";
+}
 class NFManifestPlayerProps final : public ViewProps {
  public:
   NFManifestPlayerProps() = default;
@@ -51,7 +73,7 @@ class NFManifestPlayerProps final : public ViewProps {
 
 #pragma mark - Props
 
-  std::string manifestUri{};
+  NFManifestPlayerPlayerParamsStruct playerParams{};
 };
 
 class NFVideoPlayerProps final : public ViewProps {
